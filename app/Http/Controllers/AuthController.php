@@ -81,54 +81,54 @@ class AuthController extends Controller
     {
         return view('dashboard');
     }
-//    public function showForgotPassword()
-//    {
-//        return view('auth.forgot-password');
-//    }
-//    public function sendResetLink(Request $request)
-//    {
-//        $request->validate([
-//            'email' => 'required|email',
-//        ]);
-//        $user = User::where('email', $request->email)->first();
-//        if (! $user) {
-//            return back()->with('error', 'No account found with that email address.')->withInput();
-//        }
-//        $token = Str::random(64);
-//        $user->reset_token = $token;
-//        $user->save();
-//        $reset_url = route('password.reset', ['token' => $token]).'?email='.urlencode($user->email);
-//        $subject = 'Reset your password';
-//        $message = '<h3>Hello '.$user->name.',</h3>';
-//        $message .= '<p>We received a request to reset your password. Click the link below to set a new password:</p>';
-//        $message .= '<p><a href="'.$reset_url.'">'.$reset_url.'</a></p>';
-//        $message .= '<p>If you did not request a password reset, you can ignore this email.</p>';
-//        Mail::to($user->email)->send(new Websitemail($subject, $message));
-//        return back()->with('success', 'A password reset link has been sent to your email.');
-//    }
-//    public function showResetPassword(Request $request, $token)
-//    {
-//        return view('auth.reset-password', [
-//            'token' => $token,
-//            'email' => $request->query('email'),
-//        ]);
-//    }
-//    public function resetPassword(Request $request)
-//    {
-//        $request->validate([
-//            'token' => 'required|string',
-//            'email' => 'required|email',
-//            'password' => 'required|string|min:6|confirmed',
-//        ]);
-//        $user = User::where('email', $request->email)
-//            ->where('reset_token', $request->token)
-//            ->first();
-//        if (! $user) {
-//            return back()->with('error', 'Invalid or expired password reset link.')->withInput($request->only('email'));
-//        }
-//        $user->password = Hash::make($request->password);
-//        $user->reset_token = null;
-//        $user->save();
-//        return redirect()->route('login')->with('success', 'Password has been reset. You can now log in with your new password.');
-//    }
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if (! $user) {
+            return back()->with('error', 'No account found with that email address.')->withInput();
+        }
+        $token = Str::random(64);
+        $user->reset_token = $token;
+        $user->save();
+        $reset_url = route('password.reset', ['token' => $token]).'?email='.urlencode($user->email);
+        $subject = 'Reset your password';
+        $message = '<h3>Hello '.$user->name.',</h3>';
+        $message .= '<p>We received a request to reset your password. Click the link below to set a new password:</p>';
+        $message .= '<p><a href="'.$reset_url.'">'.$reset_url.'</a></p>';
+        $message .= '<p>If you did not request a password reset, you can ignore this email.</p>';
+        Mail::to($user->email)->send(new Websitemail($subject, $message));
+        return back()->with('success', 'A password reset link has been sent to your email.');
+    }
+    public function showResetPassword(Request $request, $token)
+    {
+        return view('auth.reset-password', [
+            'token' => $token,
+            'email' => $request->query('email'),
+        ]);
+    }
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        $user = User::where('email', $request->email)
+            ->where('reset_token', $request->token)
+            ->first();
+        if (! $user) {
+            return back()->with('error', 'Invalid or expired password reset link.')->withInput($request->only('email'));
+        }
+        $user->password = Hash::make($request->password);
+        $user->reset_token = null;
+        $user->save();
+        return redirect()->route('login')->with('success', 'Password has been reset. You can now log in with your new password.');
+    }
 }
