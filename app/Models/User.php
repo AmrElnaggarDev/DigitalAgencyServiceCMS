@@ -24,6 +24,8 @@ class User extends Authenticatable
         'password',
         'verification_token',
         'reset_token',
+        'verification_token_created_at',
+        'reset_token_created_at',
     ];
 
     /**
@@ -48,6 +50,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'verification_token_created_at' => 'datetime',
+            'reset_token_created_at' => 'datetime',
         ];
     }
 }
