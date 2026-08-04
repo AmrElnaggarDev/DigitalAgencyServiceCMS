@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -24,14 +25,14 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
         $token = Str::random(64);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'verification_token' => $token,
+            'verification_token' => hash ("sha256", $token),
             'verification_token_created_at' => now(),
         ]);
         $verify_url = route('verify', ['token' => $token]);
@@ -44,7 +45,7 @@ class AuthController extends Controller
     }
     public function verify($token)
     {
-        $user = User::where('verification_token', $token)->first();
+        $user = User::where('verification_token', hash('sha256', $token))->first();
         if (! $user) {
             return redirect()->route('login')->with('error', 'Invalid or expired verification link.');
         }
@@ -71,15 +72,22 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
+
         $user = User::where('email', $request->email)->first();
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+
+        $dummyHash = '$2y$12$abcdefghijklmnopqrstuuOdfXKj6P0Z1tVx0Zc4uKx9F5b4G8h3xS';
+        $passwordHash = $user ? $user->password : $dummyHash;
+        $validPassword = Hash::check($request->password, $passwordHash);
+
+        $isVerified = $user && ! is_null($user->email_verified_at);
+
+        if (! $user || ! $validPassword || ! $isVerified) {
             return back()->with('error', 'Invalid email or password.')->withInput($request->only('email'));
         }
-        if (is_null($user->email_verified_at)) {
-            return back()->with('error', 'Please verify your email before logging in.')->withInput($request->only('email'));
-        }
+
         Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
+
         return redirect()->route('dashboard');
     }
     public function logout(Request $request)
@@ -102,24 +110,34 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
         ]);
+
+        $genericMessage = 'If an account with that email exists, a password reset link has been sent.';
+
         $user = User::where('email', $request->email)->first();
+
         if (! $user) {
-            return back()->with('error', 'No account found with that email address.')->withInput();
+            return back()->with('success', $genericMessage);
         }
+
+        // 2. Generate and hash the reset token
         $token = Str::random(64);
-        $user->reset_token = $token;
+        $user->reset_token = hash('sha256', $token);
         $user->reset_token_created_at = now();
         $user->save();
+
         $reset_url = route('password.reset', ['token' => $token]).'?email='.urlencode($user->email);
         $subject = 'Reset your password';
         $message = '<h3>Hello '.$user->name.',</h3>';
         $message .= '<p>We received a request to reset your password. Click the link below to set a new password:</p>';
         $message .= '<p><a href="'.$reset_url.'">'.$reset_url.'</a></p>';
         $message .= '<p>If you did not request a password reset, you can ignore this email.</p>';
+
+        // 4. Send the email
         Mail::to($user->email)->send(new Websitemail($subject, $message));
-        return back()->with('success', 'A password reset link has been sent to your email.');
-    }
-    public function showResetPassword(Request $request, $token)
+
+        // 5. Return the exact same success message
+        return back()->with('success', $genericMessage);
+    }    public function showResetPassword(Request $request, $token)
     {
         return view('auth.reset-password', [
             'token' => $token,
@@ -131,10 +149,10 @@ class AuthController extends Controller
         $request->validate([
             'token' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
         $user = User::where('email', $request->email)
-            ->where('reset_token', $request->token)
+            ->where('reset_token', hash ("sha256", $request->token))
             ->first();
         if (! $user) {
             return back()->with('error', 'Invalid or expired password reset link.')->withInput($request->only('email'));
