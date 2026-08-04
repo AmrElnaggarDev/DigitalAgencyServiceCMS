@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
+
+    private const VERIFICATION_TOKEN_EXPIRY_MINUTES = 1440;
+    private const RESET_TOKEN_EXPIRY_MINUTES = 1;
     public function showRegister()
     {
         return view('auth.register');
@@ -29,6 +32,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'verification_token' => $token,
+            'verification_token_created_at' => now(),
         ]);
         $verify_url = route('verify', ['token' => $token]);
         $subject = 'Please verify your email';
@@ -44,6 +48,14 @@ class AuthController extends Controller
         if (! $user) {
             return redirect()->route('login')->with('error', 'Invalid or expired verification link.');
         }
+        if (! $user->verification_token_created_at
+            || $user->verification_token_created_at->lt(now()->subMinutes(self::VERIFICATION_TOKEN_EXPIRY_MINUTES))) {
+            $user->verification_token = null;
+            $user->verification_token_created_at = null;
+            $user->save();
+            return redirect()->route('login')->with('error', 'Verification link has expired. Please register again or request a new link.');
+        }
+
         $user->email_verified_at = now();
         $user->verification_token = null;
         $user->save();
@@ -96,6 +108,7 @@ class AuthController extends Controller
         }
         $token = Str::random(64);
         $user->reset_token = $token;
+        $user->reset_token_created_at = now();
         $user->save();
         $reset_url = route('password.reset', ['token' => $token]).'?email='.urlencode($user->email);
         $subject = 'Reset your password';
@@ -126,8 +139,19 @@ class AuthController extends Controller
         if (! $user) {
             return back()->with('error', 'Invalid or expired password reset link.')->withInput($request->only('email'));
         }
+
+        if (! $user->reset_token_created_at
+            || $user->reset_token_created_at->lt(now()->subMinutes(self::RESET_TOKEN_EXPIRY_MINUTES))) {
+            $user->reset_token = null;
+            $user->reset_token_created_at = null;
+            $user->save();
+
+            return back()->with('error', 'Password reset link has expired. Please request a new one.')->withInput($request->only('email'));
+        }
+
         $user->password = Hash::make($request->password);
         $user->reset_token = null;
+        $user->reset_token_created_at = null;
         $user->save();
         return redirect()->route('login')->with('success', 'Password has been reset. You can now log in with your new password.');
     }
