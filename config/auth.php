@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Vendor;
 
 return [
 
@@ -42,6 +43,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'vendor' => [
+            'driver' => 'session',
+            'provider' => 'vendors',
+        ]
     ],
 
     /*
@@ -67,10 +72,10 @@ return [
             'model' => env('AUTH_MODEL', User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'vendors' => [
+            'driver' => 'eloquent',
+            'model' => Vendor::class,
+        ],
     ],
 
     /*
@@ -99,6 +104,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'vendors' => [
+            'provider' => 'vendors',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
@@ -111,6 +122,21 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
+
+    'guard_routes' => [
+        'web' => [
+            'login' => 'login',
+            'home' => 'dashboard',
+        ],
+//        'admin' => [
+//            'login' => 'admin.login',
+//            'home' => 'admin.dashboard',
+//        ],
+        'vendor' => [
+            'login' => 'vendor.login',
+            'home' => 'vendor.dashboard',
+        ],
+    ],
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
