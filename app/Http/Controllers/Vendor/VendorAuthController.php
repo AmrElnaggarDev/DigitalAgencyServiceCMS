@@ -125,9 +125,8 @@ class VendorAuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard(self::GUARD)->logout();
-        $request->session()->invalidate(); // it will logout from admin, vendor and user. So if you want to only logout from vendor, remove this line.
-        $request->session()->regenerate(); // if you do not want to use previous line function invalidate(), then use this only
-        $request->session()->regenerateToken();
+        // $request->session()->invalidate();
+        $request->session()->regenerate();
 
         return redirect()->route('vendor.login')->with('success', 'Logged out successfully.');
     }

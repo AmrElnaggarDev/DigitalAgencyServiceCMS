@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Vendor\VendorAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -26,6 +27,33 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes (guard: "admin", table: "admins")
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('guard.guest:admin')->group(function () {
+        Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->middleware('throttle:5,1');
+
+        Route::get('/forgot-password', [AdminAuthController::class, 'showForgotPassword'])->name('password.request');
+        Route::post('/forgot-password', [AdminAuthController::class, 'sendResetLink'])->name('password.email')->middleware('throttle:3,1');
+
+        Route::get('/reset-password/{token}', [AdminAuthController::class, 'showResetPassword'])->name('password.reset');
+        Route::post('/reset-password', [AdminAuthController::class, 'resetPassword'])->name('password.update')->middleware('throttle:5,1');
+    });
+
+    Route::middleware('guard.auth:admin')->group(function () {
+        Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('dashboard');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    });
+});
+
 
 
 /*
