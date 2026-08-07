@@ -2,39 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Forgot Password</title>
-    <style>
-        body{font-family:Arial,sans-serif;background:#1f2937;margin:0;padding:40px;color:#111}
-        .box{max-width:420px;margin:0 auto;background:#fff;padding:30px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-        .badge{display:inline-block;background:#1f2937;color:#fff;padding:3px 10px;border-radius:4px;font-size:12px;letter-spacing:1px;margin-bottom:10px}
-        h2{margin-top:0}
-        label{display:block;margin-top:12px;font-weight:600}
-        input{width:100%;padding:8px;margin-top:4px;box-sizing:border-box;border:1px solid #ccc;border-radius:4px}
-        button{margin-top:16px;width:100%;padding:10px;background:#111827;color:#fff;border:0;border-radius:4px;cursor:pointer}
-        .err{color:#b91c1c;font-size:13px}
-        .msg{padding:10px;border-radius:4px;margin-bottom:12px}
-        .msg.success{background:#dcfce7;color:#166534}
-        .msg.error{background:#fee2e2;color:#991b1b}
-        a{color:#1f2937}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Forgot Password</title>
+    <meta name="description" content="Amr Admin Panel">
+    @include('admin.layouts.styles')
 </head>
-<body>
-<div class="box">
-    <span class="badge">ADMIN PANEL</span>
-    <h2>Forgot Password</h2>
+<body class="login-page">
 
-    @if(session('success'))<div class="msg success">{{ session('success') }}</div>@endif
-    @if(session('error'))<div class="msg error">{{ session('error') }}</div>@endif
+<div class="login-wrapper">
+    <div class="login-box">
 
-    <form method="POST" action="{{ route('admin.password.email') }}">
-        @csrf
-        <label>Email</label>
-        <input type="email" name="email" value="{{ old('email') }}">
-        @error('email')<div class="err">{{ $message }}</div>@enderror
+        <!-- Logo -->
+        <div class="text-center mb-4">
+            <h1 class="login-title">Forgot Password</h1>
+            <p class="login-subtitle">Enter your email and we'll send you a reset link.</p>
+        </div>
 
-        <button type="submit">Send Reset Link</button>
-    </form>
-    <p style="margin-top:14px"><a href="{{ route('admin.login') }}">Back to Admin Login</a></p>
+        <!-- Flash Messages -->
+        @if(session('success'))
+            <div class="alert alert-success mb-3">{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger mb-3">{{ session('error') }}</div>
+        @endif
+
+        <!-- Form -->
+        <form method="POST" action="{{ route('admin.password.email') }}">
+            @csrf
+            <div class="mb-3">
+                <label class="label-custom">Email Address</label>
+                <div class="login-input-wrap">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" class="form-control-custom" placeholder="you@example.com"
+                           name="email" value="{{ old('email') }}" required>
+                </div>
+                @error('email')
+                <div class="text-danger mt-1 small">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn-login w-100">Send Reset Link</button>
+        </form>
+
+        <p class="text-center text-sm text-gray-500 mt-4 mb-0">
+            <a href="{{ route('admin.login') }}" class="text-primary-600 text-decoration-none fw-medium">
+                <i class="fa-solid fa-arrow-left me-1"></i>Back to Login
+            </a>
+        </p>
+    </div>
 </div>
+
+@include('admin.layouts.scripts')
+
 </body>
 </html>
