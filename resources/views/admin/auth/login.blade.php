@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <meta name="description" content="Amr Admin Panel">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/fontawesome.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/dataTables.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/select2.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/flatpickr.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("dist-admin/css/style.css") }}">
+    @include('admin.layouts.styles')
 </head>
 <body class="login-page">
 
@@ -59,16 +54,6 @@
     </div>
 </div>
 
-<script src="{{ asset('dist-admin/js/jquery.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/chart.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/dataTables.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/select2.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/flatpickr.min.js') }}"></script>
-<script src="{{ asset('dist-admin/vendor/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/jscolor.min.js') }}"></script>
-<script src="{{ asset('dist-admin/js/app.js') }}"></script>
-<script src="{{ asset('dist-admin/js/custom.js') }}"></script>
-
+@include('admin.layouts.scripts')
 </body>
 </html>
