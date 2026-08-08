@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Vendor\VendorAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -50,6 +51,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('guard.auth:admin')->group(function () {
         Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
+        Route::post('/profile', [AdminProfileController::class, 'profile_update'])->name('profile.update');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
     });
 });

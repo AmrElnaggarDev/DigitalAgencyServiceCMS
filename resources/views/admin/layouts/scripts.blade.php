@@ -6,5 +6,6 @@
 <script src="{{ asset('dist-admin/js/flatpickr.min.js') }}"></script>
 <script src="{{ asset('dist-admin/vendor/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('dist-admin/js/jscolor.min.js') }}"></script>
+<script src="{{ asset('dist-admin/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('dist-admin/js/app.js') }}"></script>
 <script src="{{ asset('dist-admin/js/custom.js') }}"></script>

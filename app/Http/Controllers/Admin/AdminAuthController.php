@@ -50,7 +50,7 @@ class AdminAuthController extends Controller
         Auth::guard(self::GUARD)->login($admin, $request->boolean('remember'));
         $request->session()->regenerate();
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dashboard')->with('success', 'Login successfully.');
     }
 
     public function logout(Request $request)
