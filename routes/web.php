@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Vendor\VendorAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontController::class, 'index'])->name('home');
 
 // Guest routes
 Route::middleware('guest')->group(function () {
