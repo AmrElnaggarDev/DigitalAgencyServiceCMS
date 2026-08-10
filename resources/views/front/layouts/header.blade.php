@@ -27,12 +27,9 @@
                                     <a href="javascript:void(0)">Pages </a>
                                     <ul class="sub-menu">
                                         <li><a href="{{ route('pricing') }}">Pricing</a></li>
-                                        <li><a href="portfolio.html">portfolio</a></li>
-                                        <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                                        <li><a href="team.html">Team</a></li>
-                                        <li><a href="team-details.html">Team Details</a></li>
+                                        <li><a href="{{ route('projects') }}">Projects</a></li>
+                                        <li><a href="{{ route('team_members') }}">Team Members</a></li>
                                         <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="error.html">404</a></li>
                                     </ul>
                                 </li>
                                 <li>
