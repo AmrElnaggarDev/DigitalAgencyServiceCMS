@@ -11,4 +11,9 @@ class FrontController extends Controller
     {
         return view('front.home');
     }
+
+    public function about()
+    {
+        return view('front.about');
+    }
 }

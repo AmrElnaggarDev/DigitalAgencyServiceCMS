@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
 
 // Guest routes
 Route::middleware('guest')->group(function () {

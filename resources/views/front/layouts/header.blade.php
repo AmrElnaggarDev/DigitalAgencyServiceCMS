@@ -17,7 +17,7 @@
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">About</a>
+                                    <a href="{{ route('about') }}">About</a>
                                 </li>
                                 <li>
                                     <a href="services.html">Services </a>
