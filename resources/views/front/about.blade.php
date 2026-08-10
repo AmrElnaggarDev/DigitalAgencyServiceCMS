@@ -174,7 +174,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Philimia Darwin</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Philimia Darwin</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Hilixa Maria</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Hilixa Maria</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Willamson Hilai</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Willamson Hilai</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{route('team_member', 1)}}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -264,7 +264,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>

@@ -31,4 +31,26 @@ class FrontController extends Controller
     {
         return view('front.pricing');
     }
+
+    public function projects()
+    {
+        return view('front.projects');
+    }
+
+    public function project ($id)
+    {
+        return view('front.project', compact('id'));
+    }
+
+    public function team_members()
+    {
+        return view('front.team_members');
+    }
+
+    public function team_member($id)
+    {
+        return view('front.team_member', compact('id'));
+    }
+
+
 }

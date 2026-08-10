@@ -268,7 +268,7 @@
                             </div>
                         </div>
                         <div class="ab-btn">
-                            <a href="about.html" class="tp-btn">Learn More</a>
+                            <a href="{{ route('about') }}" class="tp-btn">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -351,7 +351,7 @@
                                 </div>
                                 <div class="tpteam__text">
                                     <h3 class="tpteam-title">
-                                        <a href="team-details.html">Philimia Darwin</a>
+                                        <a href="{{ route('team_member', 1) }}">Philimia Darwin</a>
                                     </h3>
                                     <h5>Designer</h5>
                                 </div>
@@ -370,7 +370,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Hilixa Maria</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Hilixa Maria</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -389,7 +389,7 @@
                                 </div>
                                 <div class="tpteam__text">
                                     <h3 class="tpteam-title">
-                                        <a href="team-details.html">Willamson Hilai</a>
+                                        <a href="{{ route('team_member', 1) }}">Willamson Hilai</a>
                                     </h3>
                                     <h5>Designer</h5>
                                 </div>
@@ -408,7 +408,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -426,7 +426,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -444,7 +444,7 @@
                                     </div>
                                 </div>
                                 <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="team-details.html">Limonda Pwedie</a></h3>
+                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
                                     <h5>Designer</h5>
                                 </div>
                             </div>
@@ -612,23 +612,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- START PORTFOLIO FILTER AREA -->
-                <div class="col-12">
-                    <div class="text-center">
-                        <div class="portfolio-filter mb-40">
-                            <button class="active" data-filter="*">Show all</button>
-                            <button data-filter=".cat1">Design</button>
-                            <button data-filter=".cat2">Logo</button>
-                            <button data-filter=".cat3">Business</button>
-                            <button data-filter=".cat4">Agency</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- END PORTFOLIO FILTER AREA -->
-            </div>
             <div id="portfolio-grid" class="row row-portfolio">
-                <div class="col-lg-4 col-md-6 grid-item cat2 cat4">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p1.jpg') }}" data-fancybox="gallery">
@@ -648,7 +633,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 grid-item cat3 cat1">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p2.jpg') }}" data-fancybox="gallery">
@@ -668,7 +653,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 grid-item cat4 cat3">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p3.jpg') }}" data-fancybox="gallery">
@@ -686,7 +671,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 grid-item cat1 cat4">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p4.jpg') }}" data-fancybox="gallery">
@@ -704,7 +689,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 grid-item cat2 cat1">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p5.jpg') }}" data-fancybox="gallery">
@@ -724,7 +709,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 grid-item cat4 cat1">
+                <div class="col-lg-4 col-md-6 grid-item ">
                     <div class="tportfolio mb-30">
                         <div class="tportfolio__img">
                             <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p6.jpg') }}" data-fancybox="gallery">

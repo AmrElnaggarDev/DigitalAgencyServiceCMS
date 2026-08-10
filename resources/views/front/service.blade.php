@@ -31,7 +31,7 @@
                 <div class="col-xxl-8 col-xl-8 col-lg-8">
                     <div class="develop-wrapper">
                         <div class="develop-thumb">
-                            <img src={{asset("dist-front/img/service/service-img-5.jpg")}} alt="">
+                            <img src="{{asset("dist-front/img/service/service-img-5.jpg")}}" alt="">
                         </div>
                         <div class="develop-content">
                             <p>Need something changed or is there something not quite working the way you envisaged? Is
