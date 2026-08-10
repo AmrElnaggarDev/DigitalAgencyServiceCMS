@@ -9,6 +9,9 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/services', [FrontController::class, 'services'])->name('services');
+Route::get('/service{id}', [FrontController::class, 'service'])->name('service');
+Route::get('/pricing', [FrontController::class, 'pricing'])->name('pricing');
 
 // Guest routes
 Route::middleware('guest')->group(function () {
