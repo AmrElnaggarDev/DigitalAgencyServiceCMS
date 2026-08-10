@@ -25,7 +25,7 @@
                                         Design.
                                     </h2>
                                     <div class="slide-btn mt-30" data-animation="fadeInUp" data-delay="0.7s">
-                                        <a href="about.html" class="tp-btn">Discover More</a>
+                                        <a href="{{ route('about') }}" class="tp-btn">Discover More</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                         So Easy.
                                     </h2>
                                     <div class="slide-btn mt-30" data-animation="fadeInUp" data-delay="0.7s">
-                                        <a href="about.html" class="tp-btn">Discover More</a>
+                                        <a href="{{ route('about') }}" class="tp-btn">Discover More</a>
                                     </div>
                                 </div>
                             </div>
