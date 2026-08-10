@@ -90,7 +90,7 @@
                             <i class="flaticon-web-optimization"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Logo Design</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Logo Design</a></h3>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                             <i class="flaticon-develop"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Web Design</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Web Design</a></h3>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                             <i class="flaticon-graphic-design"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">UX/UI Design</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">UX/UI Design</a></h3>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             <i class="flaticon-online-business"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Seo Marketing</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Seo Marketing</a></h3>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                             <i class="flaticon-app-development"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">App Development</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">App Development</a></h3>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                             <i class="flaticon-copywriter"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Content Writing</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Content Writing</a></h3>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                             <i class="flaticon-solution"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Modern Design</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Modern Design</a></h3>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                             <i class="flaticon-resource"></i>
                         </div>
                         <div class="mservices__text">
-                            <h3 class="ms-title"><a href="services-details.html">Resource use</a></h3>
+                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Resource use</a></h3>
                         </div>
                     </div>
                 </div>

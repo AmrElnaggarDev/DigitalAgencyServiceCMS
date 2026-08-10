@@ -20,16 +20,13 @@
                                     <a href="{{ route('about') }}">About</a>
                                 </li>
                                 <li>
-                                    <a href="services.html">Services </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="services-details.html">Services Details</a></li>
-                                    </ul>
+                                    <a href="{{ route('services') }}">Services</a>
                                 </li>
+
                                 <li>
-                                    <a href="about.html">Pages </a>
+                                    <a href="javascript:void(0)">Pages </a>
                                     <ul class="sub-menu">
-                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="{{ route('pricing') }}">Pricing</a></li>
                                         <li><a href="portfolio.html">portfolio</a></li>
                                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                                         <li><a href="team.html">Team</a></li>

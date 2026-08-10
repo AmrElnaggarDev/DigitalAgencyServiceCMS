@@ -16,4 +16,19 @@ class FrontController extends Controller
     {
         return view('front.about');
     }
+
+    public function services()
+    {
+        return view('front.services');
+    }
+
+    public function service($id)
+    {
+        return view('front.service', compact('id'));
+    }
+
+    public function pricing()
+    {
+        return view('front.pricing');
+    }
 }
