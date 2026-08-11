@@ -16,6 +16,9 @@ Route::get('/projects', [FrontController::class, 'projects'])->name('projects');
 Route::get('/project/{id}', [FrontController::class, 'project'])->name('project');
 Route::get('/team-members', [FrontController::class, 'team_members'])->name('team_members');
 Route::get('/team-member/{id}', [FrontController::class, 'team_member'])->name('team_member');
+Route::get('/faq', [FrontController::class, 'faq'])->name('faq');
+Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
+Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 
 // Guest routes
 Route::middleware('guest')->group(function () {

@@ -52,5 +52,20 @@ class FrontController extends Controller
         return view('front.team_member', compact('id'));
     }
 
+    public function faq ()
+    {
+        return view('front.faq');
+    }
+
+    public function blog()
+    {
+        return view('front.blog');
+    }
+
+    public function post($id)
+    {
+        return view('front.post', compact('id'));
+    }
+
 
 }

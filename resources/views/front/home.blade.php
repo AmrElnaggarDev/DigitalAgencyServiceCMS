@@ -797,10 +797,10 @@
                                 >
                             </div>
                             <h3 class="latest-blog-title">
-                                <a href="blog-details.html">Time is money but its not full demand.</a>
+                                <a href="{{ route ('post', 1) }}">Time is money but its not full demand.</a>
                             </h3>
                             <div class="blog-arrow">
-                                <a href="blog-details.html"><i class="fal fa-angle-right"></i></a>
+                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -823,10 +823,10 @@
                                 >
                             </div>
                             <h3 class="latest-blog-title">
-                                <a href="blog-details.html">We Are Trying To Do Best Work.</a>
+                                <a href="{{ route ('post', 1) }}">We Are Trying To Do Best Work.</a>
                             </h3>
                             <div class="blog-arrow">
-                                <a href="blog-details.html"><i class="fal fa-angle-right"></i></a>
+                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -849,10 +849,10 @@
                                 >
                             </div>
                             <h3 class="latest-blog-title">
-                                <a href="blog-details.html">Nature is The best place for fresh mind.</a>
+                                <a href="{{ route ('post', 1) }}">Nature is The best place for fresh mind.</a>
                             </h3>
                             <div class="blog-arrow">
-                                <a href="blog-details.html"><i class="fal fa-angle-right"></i></a>
+                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
