@@ -29,11 +29,12 @@
                                         <li><a href="{{ route('pricing') }}">Pricing</a></li>
                                         <li><a href="{{ route('projects') }}">Projects</a></li>
                                         <li><a href="{{ route('team_members') }}">Team Members</a></li>
+                                        <li><a href="{{ route('photo_gallery') }}">Photo Gallery</a></li>
                                         <li><a href="{{ route('faq') }}">Faq</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('blog') }}">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -51,7 +52,7 @@
                             </div>
                         </div>
                         <div class="header-btn d-none d-lg-block">
-                            <a href="contact.html" class="tp-btn">Contact Us</a>
+                            <a href="{{ route('contact') }}" class="tp-btn">Contact Us</a>
                         </div>
                     </div>
                 </div>

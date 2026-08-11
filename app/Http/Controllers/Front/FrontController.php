@@ -67,5 +67,25 @@ class FrontController extends Controller
         return view('front.post', compact('id'));
     }
 
+    public function contact()
+    {
+        return view('front.contact');
+    }
+
+    public function photo_gallery()
+    {
+        return view('front.photo_gallery');
+    }
+
+    public function terms()
+    {
+        return view('front.terms');
+    }
+
+    public function privacy()
+    {
+        return view('front.privacy');
+    }
+
 
 }
