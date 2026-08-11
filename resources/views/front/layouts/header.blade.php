@@ -29,16 +29,10 @@
                                         <li><a href="{{ route('pricing') }}">Pricing</a></li>
                                         <li><a href="{{ route('projects') }}">Projects</a></li>
                                         <li><a href="{{ route('team_members') }}">Team Members</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
+                                        <li><a href="{{ route('faq') }}">Faq</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="blog.html">News </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog.html">News</a></li>
-                                        <li><a href="blog-details.html">News Details</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{ route('blog') }}">Blog</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </nav>
