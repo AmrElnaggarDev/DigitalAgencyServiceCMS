@@ -19,6 +19,11 @@ Route::get('/team-member/{id}', [FrontController::class, 'team_member'])->name('
 Route::get('/faq', [FrontController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
+Route::get('/terms-of-use', [FrontController::class, 'terms'])->name('terms');
+Route::get('/privacy-policy', [FrontController::class, 'privacy'])->name('privacy');
+
 
 // Guest routes
 Route::middleware('guest')->group(function () {

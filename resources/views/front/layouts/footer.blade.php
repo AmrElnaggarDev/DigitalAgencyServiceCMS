@@ -28,21 +28,22 @@
                         <div class="footer-menu-2">
                             <ul>
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="about.html">About us</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
-                                <li><a href="contact.html">Locations</a></li>
-                                <li><a href="blog.html">Caregivers</a></li>
-                                <li><a href="blog.html">New & Blog</a></li>
-                                <li><a href="portfolio.html">Gallery</a></li>
+                                <li><a href="{{ route('about') }}">About us</a></li>
+                                <li><a href="{{ route('services') }}">Services</a></li>
+                                <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                <li><a href="{{ route('contact') }}">Contact us</a></li>
+                                <li><a href="{{ route('terms') }}">Terms Of Use</a></li>
+                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ route('blog') }}">Blog</a></li>
+                                <li><a href="{{ route('projects') }}">Projects</a></li>
+                                <li><a href="{{ route('photo_gallery') }}">Gallery</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 d-lg-none d-xl-block">
                     <div class="footer-widget mb-30">
-                        <h3 class="footer-title">Latest Feed</h3>
+                        <h3 class="footer-title">Latest Post</h3>
                         <div class="blog-feeds pr-15">
                             <div class="signle-blog-feeds mb-20">
                                 <div class="blog-feeds-thumb">
@@ -82,7 +83,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 d-lg-block">
                     <div class="footer-widget mb-30">
-                        <h3 class="footer-title">Instagram</h3>
+                        <h3 class="footer-title">Photo Gallery</h3>
                         <div class="footer-instagram">
                             <ul>
                                 <li>
