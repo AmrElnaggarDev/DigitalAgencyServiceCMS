@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,9 +49,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('guard.auth:admin')->group(function () {
         Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('dashboard');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
         Route::post('/profile', [AdminProfileController::class, 'profile_update'])->name('profile.update');
-        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+        Route::get('/slider/index', [AdminSliderController::class, 'index'])->name('slider.index');
+        Route::post('/slider/store', [AdminSliderController::class, 'store'])->name('slider.store');
+        Route::post('/slider/update/{id}', [AdminSliderController::class, 'update'])->name('slider.update');
+        Route::post('/slider/destroy/{id}', [AdminSliderController::class, 'destroy'])->name('slider.destroy');
     });
 });
 
