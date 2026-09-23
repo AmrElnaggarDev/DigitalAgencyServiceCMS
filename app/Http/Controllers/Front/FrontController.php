@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
     public function index ()
     {
-        return view('front.home');
+        $sliders = Slider::orderBy('id','asc')->get();
+        return view('front.home', compact('sliders'));
     }
 
     public function about()

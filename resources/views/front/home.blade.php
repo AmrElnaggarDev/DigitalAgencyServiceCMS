@@ -7,56 +7,40 @@
     <div class="slider-area fix">
         <div class="slider-active swiper-container">
             <div class="swiper-wrapper">
-                <div class="slider-list swiper-slide d-flex align-items-center pt-70">
-                    <div class="slider-shape"></div>
-                    <div class="slider-shape-line"></div>
-                    <div class="slider-shape-line2"></div>
-                    <div class="slider-bg img-zoom" data-background="{{ asset('dist-front/img/slider/slider3.jpg') }}"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 position-relative">
-                                <div class="slider-circle-shape"></div>
-                                <div class="slider-text z-index text-center">
-                                            <span class="slider-sub-title" data-animation="fadeInUp" data-delay="0.3s"
-                                            >welcome to Binifox Pro agency</span
-                                            >
-                                    <h2 class="slider-title" data-animation="fadeInUp" data-delay="0.5s">
-                                        Outstanding <br />
-                                        Design.
-                                    </h2>
-                                    <div class="slide-btn mt-30" data-animation="fadeInUp" data-delay="0.7s">
-                                        <a href="{{ route('about') }}" class="tp-btn">Discover More</a>
+
+                @foreach($sliders as $slider)
+                    <div class="slider-list swiper-slide d-flex align-items-center pt-70">
+                        <div class="slider-shape"></div>
+                        <div class="slider-shape-line"></div>
+                        <div class="slider-shape-line2"></div>
+                        <div class="slider-bg img-zoom" data-background="{{ asset('uploads/'.$slider->photo) }}"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 position-relative">
+                                    <div class="slider-circle-shape"></div>
+                                    <div class="slider-text z-index text-center">
+                                        @if($slider->subheading)
+                                            <span class="slider-sub-title" data-animation="fadeInUp" data-delay="0.3s">
+                                    {{ $slider->subheading }}
+                                </span>
+                                        @endif
+                                        @if($slider->heading)
+                                            <h2 class="slider-title" data-animation="fadeInUp" data-delay="0.5s">
+                                                {!! nl2br($slider->heading) !!}
+                                            </h2>
+                                        @endif
+                                        @if($slider->button_text && $slider->button_link)
+                                            <div class="slide-btn mt-30" data-animation="fadeInUp" data-delay="0.7s">
+                                                <a href="{{ $slider->button_link }}" class="tp-btn">{{ $slider->button_text }}</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="slider-list swiper-slide d-flex align-items-center pt-70">
-                    <div class="slider-shape"></div>
-                    <div class="slider-shape-line"></div>
-                    <div class="slider-shape-line2"></div>
-                    <div class="slider-bg img-zoom" data-background="{{ asset('dist-front/img/slider/slider4.jpg') }}"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 position-relative">
-                                <div class="slider-circle-shape"></div>
-                                <div class="slider-text z-index text-center">
-                                            <span class="slider-sub-title" data-animation="fadeInUp" data-delay="0.3s"
-                                            >welcome to Binifox Pro agency</span
-                                            >
-                                    <h2 class="slider-title" data-animation="fadeInUp" data-delay="0.5s">
-                                        Smart Think <br />
-                                        So Easy.
-                                    </h2>
-                                    <div class="slide-btn mt-30" data-animation="fadeInUp" data-delay="0.7s">
-                                        <a href="{{ route('about') }}" class="tp-btn">Discover More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <!-- If we need pagination -->
             <!-- <div class="swiper-pagination"></div> -->
