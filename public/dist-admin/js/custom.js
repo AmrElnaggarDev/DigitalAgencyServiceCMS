@@ -114,3 +114,14 @@ $(function () {
   }
 
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('form').forEach(form => {
+        form.setAttribute('autocomplete', 'off');
+    });
+
+    document.querySelectorAll('input, textarea, select').forEach(field => {
+        field.setAttribute('autocomplete', 'off');
+    });
+});

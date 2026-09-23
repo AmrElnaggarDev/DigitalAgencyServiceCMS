@@ -34,41 +34,40 @@ class AdminSliderController extends Controller
         return redirect()->back()->with('success', 'Slider added successfully.');
     }
 
-//    public function update(Request $request, $id)
-//    {
-//
-//
-//        $service = Service::where('id', $id)->first();
-//
-//        if($request->hasFile('photo')) {
-//            $request->validate([
-//                'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//            ]);
-//            $final_name = 'service_'.time().'.'.$request->photo->getClientOriginalExtension();
-//            if($service->photo && file_exists(public_path('uploads/'.$service->photo))) {
-//                unlink(public_path('uploads/'.$service->photo));
-//            }
-//            $request->photo->move(public_path('uploads/'), $final_name);
-//            $service->photo = $final_name;
-//        }
-//
-//        $service->name = $request->name;
-//        $service->slug = $request->slug;
-//        $service->description = $request->description;
-//        $service->save();
-//
-//        return redirect()->back()->with('success', 'Service updated successfully.');
-//    }
-//
-//    public function destroy(Request $request, $id)
-//    {
-//        $service = Service::where('id', $id)->first();
-//        if($service->photo && file_exists(public_path('uploads/'.$service->photo))) {
-//            unlink(public_path('uploads/'.$service->photo));
-//        }
-//        $service->delete();
-//
-//        return redirect()->back()->with('success', 'Service deleted successfully.');
-//    }
+    public function update(Request $request, $id)
+    {
+        $slider = Slider::where('id', $id)->first();
+
+        if($request->hasFile('photo')) {
+            $request->validate([
+                'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $final_name = 'slider_'.time().'.'.$request->photo->getClientOriginalExtension();
+            if($slider->photo && file_exists(public_path('uploads/'.$slider->photo))) {
+                unlink(public_path('uploads/'.$slider->photo));
+            }
+            $request->photo->move(public_path('uploads/'), $final_name);
+            $slider->photo = $final_name;
+        }
+
+        $slider->subheading = $request->subheading;
+        $slider->heading = $request->heading;
+        $slider->button_text = $request->button_text;
+        $slider->button_link = $request->button_link;
+        $slider->save();
+
+        return redirect()->back()->with('success', 'Item is updated successfully.');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $slider = Slider::where('id', $id)->first();
+        if($slider->photo && file_exists(public_path('uploads/'.$slider->photo))) {
+            unlink(public_path('uploads/'.$slider->photo));
+        }
+        $slider->delete();
+
+        return redirect()->back()->with('success', 'Item is deleted successfully.');
+    }
 
 }
