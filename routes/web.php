@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminAboutItemController;
 
 
 
@@ -57,6 +58,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/slider/store', [AdminSliderController::class, 'store'])->name('slider.store');
         Route::post('/slider/update/{id}', [AdminSliderController::class, 'update'])->name('slider.update');
         Route::post('/slider/destroy/{id}', [AdminSliderController::class, 'destroy'])->name('slider.destroy');
+
+        Route::get('/about-item/index', [AdminAboutItemController::class, 'index'])->name('about-item.index');
+        Route::post('/about-item/update', [AdminAboutItemController::class, 'update'])->name('about-item.update');
+
     });
 });
 
