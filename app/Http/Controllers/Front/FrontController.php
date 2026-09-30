@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutItem;
+use App\Models\CounterItem;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -13,13 +14,15 @@ class FrontController extends Controller
     {
         $sliders = Slider::orderBy('id','asc')->get();
         $about_item = AboutItem::where ('id', 1)->first();
-        return view('front.home', compact('sliders', 'about_item'));
+        $counter_item = CounterItem::where ('id', 1)->first();
+        return view('front.home', compact('sliders', 'about_item', 'counter_item'));
     }
 
     public function about()
     {
         $about_item = AboutItem::where ('id', 1)->first();
-        return view('front.about', compact('about_item'));
+        $counter_item = CounterItem::where ('id', 1)->first();
+        return view('front.about', compact('about_item', 'counter_item'));
     }
 
     public function services()

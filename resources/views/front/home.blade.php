@@ -260,43 +260,43 @@
 
     <!-- counter -->
     <section class="counter-wraper pos-rel black-bg pt-120 pb-90" data-overlay="dark" data-opacity="7">
-        <div class="fact-bg slider-bg" data-background="{{ asset('dist-front/img/slider/slider3.jpg') }}"></div>
+        <div class="fact-bg slider-bg" data-background="{{ asset('uploads/'.$counter_item->photo) }}"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-md-3">
                     <div class="single-couter counter-box text-center mb-30 z-index">
                         <div class="fact-icon">
-                            <i class="flaticon-group"></i>
+                            <i class="{{ $counter_item->item1_icon }}"></i>
                         </div>
-                        <h2><span class="counter">5420</span></h2>
-                        <h4>Expert Members</h4>
+                        <h2><span class="counter">{{ $counter_item->item1_number }}</span></h2>
+                        <h4>{{ $counter_item->item1_text }}</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="single-couter counter-box text-center mb-30 z-index">
                         <div class="fact-icon">
-                            <i class="flaticon-happiness"></i>
+                            <i class="{{ $counter_item->item2_icon }}"></i>
                         </div>
-                        <h2><span class="counter">1540</span></h2>
-                        <h4>Satisfied Clients</h4>
+                        <h2><span class="counter">{{ $counter_item->item2_number }}</span></h2>
+                        <h4>{{ $counter_item->item2_text }}</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="single-couter counter-box text-center mb-30 z-index">
                         <div class="fact-icon">
-                            <i class="flaticon-label"></i>
+                            <i class="{{ $counter_item->item3_icon }}"></i>
                         </div>
-                        <h2><span class="counter">8994</span></h2>
-                        <h4>Problem Solve</h4>
+                        <h2><span class="counter">{{ $counter_item->item3_number }}</span></h2>
+                        <h4>{{ $counter_item->item3_text }}</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="single-couter counter-box text-center mb-30 z-index">
                         <div class="fact-icon">
-                            <i class="flaticon-badge"></i>
+                            <i class="{{ $counter_item->item4_icon }}"></i>
                         </div>
-                        <h2><span class="counter">1523</span></h2>
-                        <h4>Award Winner</h4>
+                        <h2><span class="counter">{{ $counter_item->item4_number }}</span></h2>
+                        <h4>{{ $counter_item->item4_text }}</h4>
                     </div>
                 </div>
             </div>
