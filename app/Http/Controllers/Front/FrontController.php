@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutItem;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -11,12 +12,14 @@ class FrontController extends Controller
     public function index ()
     {
         $sliders = Slider::orderBy('id','asc')->get();
-        return view('front.home', compact('sliders'));
+        $about_item = AboutItem::where ('id', 1)->first();
+        return view('front.home', compact('sliders', 'about_item'));
     }
 
     public function about()
     {
-        return view('front.about');
+        $about_item = AboutItem::where ('id', 1)->first();
+        return view('front.about', compact('about_item'));
     }
 
     public function services()
