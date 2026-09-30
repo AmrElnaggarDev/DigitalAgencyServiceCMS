@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Front\FrontController;
@@ -62,7 +63,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/about-item/index', [AdminAboutItemController::class, 'index'])->name('about-item.index');
         Route::post('/about-item/update', [AdminAboutItemController::class, 'update'])->name('about-item.update');
 
+        Route::get('/counter-item/index', [AdminCounterItemController::class, 'index'])->name('counter-item.index');
+        Route::post('/counter-item/update', [AdminCounterItemController::class, 'update'])->name('counter-item.update');
+
     });
 });
-
 

@@ -19,6 +19,11 @@
             <span class="sidebar-label">About Items</span>
         </a>
 
+        <a href="{{ route('admin.counter-item.index') }}" class="nav-link {{ request()->routeIs('admin.counter-item.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-chart-line"></i>
+            <span class="sidebar-label">Counter Items</span>
+        </a>
+
 {{--        <div class="nav-dropdown">--}}
 {{--            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle">--}}
 {{--                <i class="fa-solid fa-table"></i>--}}
