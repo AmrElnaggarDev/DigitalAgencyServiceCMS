@@ -10,8 +10,13 @@
         </a>
 
         <a href="{{ route('admin.slider.index') }}" class="nav-link {{ request()->routeIs('admin.slider.index') ? 'active' : '' }}">
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-images"></i>
             <span class="sidebar-label">Slider</span>
+        </a>
+
+        <a href="{{ route('admin.about-item.index') }}" class="nav-link {{ request()->routeIs('admin.about-item.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-info-circle"></i>
+            <span class="sidebar-label">About Items</span>
         </a>
 
 {{--        <div class="nav-dropdown">--}}
