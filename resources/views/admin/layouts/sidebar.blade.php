@@ -24,6 +24,11 @@
             <span class="sidebar-label">Counter Items</span>
         </a>
 
+        <a href="{{ route('admin.service.index') }}" class="nav-link {{ request()->routeIs('admin.service.index') ? 'active' : '' }}">
+            <i class="fa-solid fa-concierge-bell"></i>
+            <span class="sidebar-label">Services</span>
+        </a>
+
 {{--        <div class="nav-dropdown">--}}
 {{--            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle">--}}
 {{--                <i class="fa-solid fa-table"></i>--}}
