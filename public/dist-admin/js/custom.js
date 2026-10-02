@@ -21,21 +21,17 @@ $(function () {
     $(this).closest('.nav-dropdown').toggleClass('open');
   });
 
-  // TinyMCE
-  if ($('#bioEditor').length) {
-    tinymce.init({
-      selector: '#bioEditor',
-      height: 300,
-      menubar: false,
-      plugins: 'lists link image code table wordcount',
-      toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | code | removeformat',
-      content_style: 'body { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; }',
-      branding: false,
-      promotion: false,
-      skin: 'oxide',
-      statusbar: true
-    });
-  }
+
+// TinyMCE
+    if ($('.tinymce-editor').length) {
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 300,
+            menubar: false,
+            plugins: 'lists link image code table wordcount',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | code | removeformat'
+        });
+    }
 
   // Flatpickr
   if ($('#datepicker').length) {

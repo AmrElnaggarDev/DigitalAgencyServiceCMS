@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/counter-item/index', [AdminCounterItemController::class, 'index'])->name('counter-item.index');
         Route::post('/counter-item/update', [AdminCounterItemController::class, 'update'])->name('counter-item.update');
+
+
+        Route::get('/service/index', [AdminServiceController::class, 'index'])->name('service.index');
+        Route::post('/service/store', [AdminServiceController::class, 'store'])->name('service.store');
+        Route::post('/service/update/{id}', [AdminServiceController::class, 'update'])->name('service.update');
+        Route::post('/service/destroy/{id}', [AdminServiceController::class, 'destroy'])->name('service.destroy');
 
     });
 });
