@@ -87,6 +87,7 @@
                 <th>Title</th>
                 <th>Slug</th>
                 <th>Show on Home</th>
+                <th>Service FAQ</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -107,6 +108,12 @@
                             <span class="badge bg-danger">No</span>
                         @endif
                     </td>
+                    <td>
+                        <a href="{{ route('admin.service.faq', $service->id) }}" class="btn btn-info btn-sm">
+                            <i class="fa-solid fa-question text-xs"></i> Manage FAQ
+                        </a>
+                    </td>
+
                     <td>
                         <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $service->id }}">
                             <i class="fa-solid fa-pen-to-square text-xs"></i>

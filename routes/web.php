@@ -73,6 +73,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/service/update/{id}', [AdminServiceController::class, 'update'])->name('service.update');
         Route::post('/service/destroy/{id}', [AdminServiceController::class, 'destroy'])->name('service.destroy');
 
+        Route::get('/service/faq/{service_id}', [AdminServiceController::class, 'faq'])->name('service.faq');
+        Route::post('/service/faq/store/{service_id}', [AdminServiceController::class, 'faq_store'])->name('service.faq.store');
+        Route::post('/service/faq/update/{id}', [AdminServiceController::class, 'faq_update'])->name('service.faq.update');
+        Route::post('/service/faq/destroy/{id}', [AdminServiceController::class, 'faq_destroy'])->name('service.faq.destroy');
     });
 });
 
