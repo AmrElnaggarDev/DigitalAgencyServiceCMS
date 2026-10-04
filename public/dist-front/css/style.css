@@ -4,7 +4,7 @@
     Theme Name: NAME
     Author: Theme_Pure
     Support: basictheme400@gmail.com
-    Description:  
+    Description:
     Version: 1.0
 
 -----------------------------------------------------------------------------------
@@ -1573,9 +1573,9 @@ p {
   margin-bottom: 35px;
 }
 .develop-wrapper .develop-thumb img {
-  -webkit-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
+  /*-webkit-filter: grayscale(100%);*/
+  /*-ms-filter: grayscale(100%);*/
+  /*-moz-filter: grayscale(100%);*/
 }
 .develop-wrapper .develop-content {
   padding-right: 20px;

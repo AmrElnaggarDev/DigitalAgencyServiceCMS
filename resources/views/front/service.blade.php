@@ -9,12 +9,12 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="page__title-content mt-100 text-center">
-                        <h2> Web Development</h2>
+                        <h2> {{ $service->title }}</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                                 <li class="breadcrumb-item"><a href="{{ route('services') }}">Services</a></li>
-                                <li class="breadcrumb-item " aria-current="page">Web Development</li>
+                                <li class="breadcrumb-item " aria-current="page">{{ $service->title }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -31,18 +31,11 @@
                 <div class="col-xxl-8 col-xl-8 col-lg-8">
                     <div class="develop-wrapper">
                         <div class="develop-thumb">
-                            <img src="{{asset("dist-front/img/service/service-img-5.jpg")}}" alt="">
+                            <img src="{{asset('uploads/'. $service->photo)}}" alt="" style="width: 100%; height: auto;">
                         </div>
                         <div class="develop-content">
-                            <p>Need something changed or is there something not quite working the way you envisaged? Is
-                                your van a little old and tired and need refreshing? Lorem Ipsum is simply dummy text of
-                                the printing and typesetting industry.
-                            </p>
                             <p>
-                                Lorem Ipsum has been the industry's standard
-                                dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                scrambled it to make a type specimen book. It has survived not only five centuries, but
-                                also the leap into electronic typesetting, remaining essentially unchanged.
+                                {!! $service->description !!}
                             </p>
                         </div>
                     </div>
@@ -107,12 +100,20 @@
                 <div class="col-xxl-4 col-xl-4 col-lg-4">
                     <div class="sidebar-wrap">
                         <div class="widget_categories grey-bg">
-                            <h4 class="bs-widget-title pl-20">Categories</h4>
+                            <h4 class="bs-widget-title pl-20">All Services</h4>
                             <ul>
-                                <li><a href="{{route('service', 1)}}">Web Developement</a></li>
-                                <li><a href="{{route('service', 1)}}">Graphic Design</a></li>
-                                <li><a href="{{route('service', 1)}}">SEO & Content Writting</a></li>
-                                <li><a href="{{route('service', 1)}}">Digital Marketing</a></li>
+                                @foreach($services as $service)
+                                    <li><a href="{{route('service', $service->slug)}}">{{ $service->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service details area end here -->
+
                                 <li><a href="{{route('service', 1)}}">App Development</a></li>
                             </ul>
                         </div>

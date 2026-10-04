@@ -17,6 +17,11 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'icon' => 'required',
+            'title' => 'required',
+            'slug' => 'required|alpha_dash|unique:services,slug',
+            'short_description' => 'required',
+            'description' => 'required',
             'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -39,6 +44,15 @@ class AdminServiceController extends Controller
     public function update(Request $request, $id)
     {
         $service = Service::where('id', $id)->first();
+
+        $request->validate([
+            'icon' => 'required',
+            'title' => 'required',
+            'slug' => 'required|alpha_dash|unique:services,slug,'.$service->id,
+            'short_description' => 'required',
+            'description' => 'required',
+        ]);
+
 
         if($request->hasFile('photo')) {
             $request->validate([

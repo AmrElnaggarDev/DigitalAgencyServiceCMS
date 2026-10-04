@@ -28,53 +28,61 @@
     <div class="main-services grey-bg pt-120 pb-90" data-background="{{asset("dist-front/img/pattern/pt1.png")}}">
         <div class="container">
             <div class="row text-center">
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div class="mfbox mfbox-white">
-                        <div class="mf-shape"></div>
-                        <div class="mfbox__icon mb-15">
-                            <i class="flaticon-insight"></i>
-                        </div>
-                        <div class="mfbox__text">
-                            <h3 class="mf-title">Fully Responsive for <br>
-                                all devices</h3>
-                            <p>Lorem Ipsum is simply dummy text of free available in market the printing and typesetting industry.</p>
-                        </div>
-                        <div class="mf-btn">
-                            <a class="squire-btn" href="{{route('service', 1)}}"><i class="fal fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div class="mfbox mfbox-white">
-                        <div class="mf-shape"></div>
-                        <div class="mfbox__icon mb-15">
-                            <i class="flaticon-remarketing"></i>
-                        </div>
-                        <div class="mfbox__text">
-                            <h3 class="mf-title">Largest Business<br> experts</h3>
-                            <p>Lorem Ipsum is simply dummy text of free available in market the printing and typesetting industry.</p>
-                        </div>
-                        <div class="mf-btn">
-                            <a class="squire-btn" href="{{ route('service', 1) }}"><i class="fal fa-angle-right"></i></a>
+                @foreach($services as $service)
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="mfbox mfbox-white">
+                            <div class="mf-shape"></div>
+                            <div class="mfbox__icon mb-15">
+                                <i class="{{ $service->icon }}"></i>
+                            </div>
+                            <div class="mfbox__text">
+                                <h3 class="mf-title">
+                                    <a href="{{ route('service', $service->slug) }}">
+                                        {{ $service->title }}
+                                    </a>
+                                </h3>
+                                <p> {{ $service->short_description }}</p>
+                            </div>
+                            <div class="mf-btn">
+                                <a class="squire-btn" href="{{route('service', $service->slug)}}"><i class="fal fa-angle-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div class="mfbox mfbox-white">
-                        <div class="mf-shape"></div>
-                        <div class="mfbox__icon mb-15">
-                            <i class="flaticon-technical-support"></i>
-                        </div>
-                        <div class="mfbox__text">
-                            <h3 class="mf-title">SEO & Content <br>
-                                writting</h3>
-                            <p>Lorem Ipsum is simply dummy text of free available in market the printing and typesetting industry.</p>
-                        </div>
-                        <div class="mf-btn">
-                            <a class="squire-btn" href="{{ route('service', 1) }}"><i class="fal fa-angle-right"></i></a>
-                        </div>
+                @endforeach
+
+                    <div class="col-lg-12 d-flex justify-content-center mt-30">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+
+                                @if($services->hasPages())
+                                    {{-- Previous Page Link --}}
+                                    @if (!$services->onFirstPage())
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $services->previousPageUrl() }}">
+                                                <i class="fas fa-arrow-left"></i>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    {{-- Pagination Elements --}}
+                                    @foreach ($services->getUrlRange(1, $services->lastPage()) as $page => $url)
+                                        <li class="page-item {{ ($page == $services->currentPage()) ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
+                                    {{-- Next Page Link --}}
+                                    @if ($services->hasMorePages())
+                                        <li class="page-item next-page">
+                                            <a class="page-link" href="{{ $services->nextPageUrl() }}">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endif
+
+                            </ul>
+                        </nav>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>

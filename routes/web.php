@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\AdminAboutItemController;
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/services', [FrontController::class, 'services'])->name('services');
-Route::get('/service/{id}', [FrontController::class, 'service'])->name('service');
+Route::get('/service/{slug}', [FrontController::class, 'service'])->name('service');
 Route::get('/pricing', [FrontController::class, 'pricing'])->name('pricing');
 Route::get('/projects', [FrontController::class, 'projects'])->name('projects');
 Route::get('/project/{id}', [FrontController::class, 'project'])->name('project');

@@ -64,118 +64,23 @@
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-web-optimization"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Logo Design</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-develop"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Web Design</a></h3>
+                @foreach($services as $service)
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-30">
+                        <div class="mservices fix">
+                            <div class="ms-line-shape">
+                                <div class="ms-line"></div>
+                                <div class="ms-line2"></div>
+                            </div>
+                            <div class="mservices__icon">
+                                <i class="{{ $service->icon }}"></i>
+                            </div>
+                            <div class="mservices__text">
+                                <h3 class="ms-title"><a href="{{route ('service', $service->slug)}}">{{ $service->title }}</a></h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-graphic-design"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">UX/UI Design</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-online-business"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Seo Marketing</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-app-development"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">App Development</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-copywriter"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Content Writing</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-solution"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Modern Design</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-30">
-                    <div class="mservices fix">
-                        <div class="ms-line-shape">
-                            <div class="ms-line"></div>
-                            <div class="ms-line2"></div>
-                        </div>
-                        <div class="mservices__icon">
-                            <i class="flaticon-resource"></i>
-                        </div>
-                        <div class="mservices__text">
-                            <h3 class="ms-title"><a href="{{route ('service', 1)}}">Resource use</a></h3>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </div>
