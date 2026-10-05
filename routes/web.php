@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
@@ -83,6 +84,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/team-member/store', [AdminTeamMemberController::class, 'store'])->name('team_member.store');
         Route::post('/team-member/update/{id}', [AdminTeamMemberController::class, 'update'])->name('team_member.update');
         Route::post('/team-member/destroy/{id}', [AdminTeamMemberController::class, 'destroy'])->name('team_member.destroy');
+
+        Route::get('/project/index', [AdminProjectController::class, 'index'])->name('project.index');
+        Route::post('/project/store', [AdminProjectController::class, 'store'])->name('project.store');
+        Route::post('/project/update/{id}', [AdminProjectController::class, 'update'])->name('project.update');
+        Route::post('/project/destroy/{id}', [AdminProjectController::class, 'destroy'])->name('project.destroy');
+
     });
 });
 
