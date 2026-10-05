@@ -7,6 +7,7 @@ use App\Models\AboutItem;
 use App\Models\CounterItem;
 use App\Models\Service;
 use App\Models\Slider;
+use App\Models\TeamMember;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -17,14 +18,16 @@ class FrontController extends Controller
         $about_item = AboutItem::where ('id', 1)->first();
         $counter_item = CounterItem::where ('id', 1)->first();
         $services = Service::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
-        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services'));
+        $team_members = TeamMember::orderBy('id','asc')->get();
+        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members'));
     }
 
     public function about()
     {
         $about_item = AboutItem::where ('id', 1)->first();
         $counter_item = CounterItem::where ('id', 1)->first();
-        return view('front.about', compact('about_item', 'counter_item'));
+        $team_members = TeamMember::orderBy('id','asc')->get();
+        return view('front.about', compact('about_item', 'counter_item', 'team_members'));
     }
 
     public function services()
@@ -57,12 +60,14 @@ class FrontController extends Controller
 
     public function team_members()
     {
-        return view('front.team_members');
+        $team_members = TeamMember::orderBy ('id','asc')->paginate(6);
+        return view('front.team_members', compact('team_members'));
     }
 
-    public function team_member($id)
+    public function team_member($slug)
     {
-        return view('front.team_member', compact('id'));
+        $team_member = TeamMember::where('slug', $slug)->first();
+        return view('front.team_member', compact('team_member'));
     }
 
     public function faq ()

@@ -160,114 +160,36 @@
             <div class="rows">
                 <div class="team-active swiper-container pb-30">
                     <div class="swiper-wrapper">
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-1.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        @foreach($team_members as $team_member)
+                            <div class="team-item swiper-slide">
+                                <div class="tpteam text-center mb-30">
+                                    <div class="tpteam__img">
+                                        <img src="{{ asset('uploads/'.$team_member->photo) }}" alt="">
+                                        <div class="tpteam__social">
+                                            @if($team_member->facebook)
+                                                <a href="{{ $team_member->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                            @endif
+
+                                            @if($team_member->twitter)
+                                                <a href="{{ $team_member->twitter }}"><i class="fab fa-twitter"></i></a>
+                                            @endif
+
+                                            @if($team_member->linkedin)
+                                                <a href="{{ $team_member->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                                            @endif
+
+                                            @if($team_member->instagram)
+                                                <a href="{{ $team_member->instagram }}"><i class="fab fa-instagram"></i></a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="tpteam__text">
+                                        <h3 class="tpteam-title"><a href="{{ route('team_member', $team_member->slug) }}">{{ $team_member->name }}</a></h3>
+                                        <h5>{{ $team_member->designation }}</h5>
                                     </div>
                                 </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Philimia Darwin</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
                             </div>
-                        </div>
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-2.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Hilixa Maria</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-3.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Willamson Hilai</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-7.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-8.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{route('team_member', 1)}}">Limonda Pwedie</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item swiper-slide">
-                            <div class="tpteam text-center mb-30">
-                                <div class="tpteam__img">
-                                    <img src="{{ asset('dist-front/img/team/team-member-9.jpg') }}" alt="" />
-                                    <div class="tpteam__social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-behance"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpteam__text">
-                                    <h3 class="tpteam-title"><a href="{{ route('team_member', 1) }}">Limonda Pwedie</a></h3>
-                                    <h5>Designer</h5>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination team-pagination"></div>
