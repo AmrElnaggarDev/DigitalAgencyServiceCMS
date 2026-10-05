@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAboutItemController;
@@ -77,6 +78,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/service/faq/store/{service_id}', [AdminServiceController::class, 'faq_store'])->name('service.faq.store');
         Route::post('/service/faq/update/{id}', [AdminServiceController::class, 'faq_update'])->name('service.faq.update');
         Route::post('/service/faq/destroy/{id}', [AdminServiceController::class, 'faq_destroy'])->name('service.faq.destroy');
+
+        Route::get('/team-member/index', [AdminTeamMemberController::class, 'index'])->name('team_member.index');
+        Route::post('/team-member/store', [AdminTeamMemberController::class, 'store'])->name('team_member.store');
+        Route::post('/team-member/update/{id}', [AdminTeamMemberController::class, 'update'])->name('team_member.update');
+        Route::post('/team-member/destroy/{id}', [AdminTeamMemberController::class, 'destroy'])->name('team_member.destroy');
     });
 });
 

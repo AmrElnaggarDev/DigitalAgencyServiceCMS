@@ -29,6 +29,11 @@
             <span class="sidebar-label">Services</span>
         </a>
 
+        <a href="{{ route('admin.team_member.index') }}" class="nav-link {{ request()->routeIs('admin.team-member.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-users"></i>
+            <span class="sidebar-label">Team Members</span>
+        </a>
+
 {{--        <div class="nav-dropdown">--}}
 {{--            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle">--}}
 {{--                <i class="fa-solid fa-table"></i>--}}
