@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\AboutItem;
 use App\Models\CounterItem;
+use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
@@ -19,7 +20,8 @@ class FrontController extends Controller
         $counter_item = CounterItem::where ('id', 1)->first();
         $services = Service::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $team_members = TeamMember::orderBy('id','asc')->get();
-        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members'));
+        $projects = Project::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
+        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members', 'projects'));
     }
 
     public function about()
@@ -50,12 +52,16 @@ class FrontController extends Controller
 
     public function projects()
     {
-        return view('front.projects');
+        $projects = Project::orderBy ('id','asc')->paginate(6);
+        return view('front.projects', compact('projects'));
     }
 
-    public function project ($id)
+    public function project ($slug)
     {
-        return view('front.project', compact('id'));
+        $project = Project::where ('slug', $slug)->first();
+        $next_project = Project::where('id', '>', $project->id)->orderBy('id','asc')->first();
+        $previous_project = Project::where('id', '<', $project->id)->orderBy('id','desc')->first();
+        return view('front.project', compact('project', 'next_project', 'previous_project'));
     }
 
     public function team_members()

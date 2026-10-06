@@ -26,115 +26,61 @@
     <section class="portfolio-area pt-120 pb-120">
         <div class="container">
             <div id="portfolio-grid" class="row row-portfolio">
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-1.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-1.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route('project', 1) }}">Binifox Busines</a></h3>
-                                <h4>Busines, Agency</h4>
+                @foreach($projects as $project)
+                    <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
+                        <div class="tportfolio mb-30">
+                            <div class="tportfolio__img">
+                                <a class="popup-image" href="{{ asset('uploads/'.$project->photo) }}" data-fancybox="gallery">
+                                    <img src="{{ asset('uploads/'.$project->photo) }}" alt="{{ $project->title }}" style="width: 100%; height: 260px; object-fit: cover;" />
+                                </a>
+                                <div class="tportfolio__text tportfolio__text-2">
+                                    <h3 class="tportfolio-title"><a href="{{ route('project', $project->slug) }}">{{ $project->title }}</a></h3>
+                                    <h4>{{ $project->category }}</h4>
+                                    <div class="portfolio-plus">
+                                        <a href="{{ asset('uploads/'.$project->photo) }}" data-fancybox="gallery">
+                                            <i class="fal fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
 
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-1.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-2.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-2.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route ('project', 1) }}">Marketing Analysis</a>
-                                </h3>
-                                <h4>Consultation, Idea</h4>
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-2.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-3.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-3.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route ('project', 1) }}">Busines Idea</a></h3>
-                                <h4>Deaign, Brand</h4>
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-3.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-4.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-4.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route ('project', 1) }}">Logo Design</a></h3>
-                                <h4>Print, Market</h4>
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-4.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-5.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-5.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route ('project', 1) }}">Digital Marketing</a></h3>
-                                <h4>Logo, Busines</h4>
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-5.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 grid-item">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{asset("dist-front/img/portfolio/port-6.jpg")}}" data-fancybox="gallery">
-                                <img src="{{asset("dist-front/img/portfolio/port-6.jpg")}}" alt=""/>
-                            </a>
-                            <div class="tportfolio__text tportfolio__text-2">
-                                <h3 class="tportfolio-title"><a href="{{ route ('project', 1) }}">Super Experience</a></h3>
-                                <h4>Market, Idea</h4>
-                                <div class="portfolio-plus">
-                                    <a href="{{asset("dist-front/img/portfolio/port-6.jpg")}}" data-fancybox="gallery">
-                                        <i class="fal fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center mt-30">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+
+                            @if($projects->hasPages())
+                                {{-- Previous Page Link --}}
+                                @if (!$projects->onFirstPage())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $projects->previousPageUrl() }}">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                                {{-- Pagination Elements --}}
+                                @foreach ($projects->getUrlRange(1, $projects->lastPage()) as $page => $url)
+                                    <li class="page-item {{ ($page == $projects->currentPage()) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+                                {{-- Next Page Link --}}
+                                @if ($projects->hasMorePages())
+                                    <li class="page-item next-page">
+                                        <a class="page-link" href="{{ $projects->nextPageUrl() }}">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endif
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
