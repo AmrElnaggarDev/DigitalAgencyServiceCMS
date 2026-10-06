@@ -100,22 +100,22 @@
                         <div class="row gx-2 mb-30">
                             <div class="col-6">
                                 <div class="ab-img img-filter">
-                                    <img src="{{ asset('uploads/' . $about_item->photo1) }}" alt="" />
+                                    <img src="{{ asset('uploads/' . $about_item->photo1) }}" alt="" style="width: 100%; height: 220px; object-fit: cover;" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="ab-img img-filter">
-                                    <img src="{{ asset('uploads/' . $about_item->photo2) }}" alt="" />
+                                    <img src="{{ asset('uploads/' . $about_item->photo2) }}" alt="" style="width: 100%; height: 220px; object-fit: cover;" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="ab-img img-filter">
-                                    <img src="{{ asset('uploads/' . $about_item->photo3) }}" alt="" />
+                                    <img src="{{ asset('uploads/' . $about_item->photo3) }}" alt="" style="width: 100%; height: 220px; object-fit: cover;" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="ab-img img-filter">
-                                    <img src="{{ asset('uploads/' . $about_item->photo4) }}" alt="" />
+                                    <img src="{{ asset('uploads/' . $about_item->photo4) }}" alt="" style="width: 100%; height: 220px; object-fit: cover;" />
                                 </div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                             <div class="team-item swiper-slide">
                                 <div class="tpteam text-center mb-30">
                                     <div class="tpteam__img">
-                                        <img src="{{ asset('uploads/'.$team_member->photo) }}" alt="">
+                                        <img src="{{ asset('uploads/'.$team_member->photo) }}" alt="" style="width: 100%; height: 320px; object-fit: cover;">
                                         <div class="tpteam__social">
                                             @if($team_member->facebook)
                                                 <a href="{{ $team_member->facebook }}"><i class="fab fa-facebook-f"></i></a>
@@ -417,122 +417,26 @@
                 </div>
             </div>
             <div id="portfolio-grid" class="row row-portfolio">
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p1.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p1.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title">
-                                <a href="portfolio-details.html">Binifox Busines</a>
-                            </h3>
-                            <h4>Busines, Agency</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
+                @foreach($projects as $project)
+                    <div class="col-lg-4 col-md-6 grid-item">
+                        <div class="tportfolio mb-30">
+                            <div class="tportfolio__img">
+                                <a class="popup-image" href="{{ asset('uploads/'.$project->photo) }}" data-fancybox="gallery">
+                                    <img src="{{ asset('uploads/'.$project->photo) }}" alt="{{ $project->title }}" style="width: 100%; height: 260px; object-fit: cover;" />
                                 </a>
+                            </div>
+                            <div class="tportfolio__text">
+                                <h3 class="tportfolio-title"><a href="{{ route('project', $project->slug) }}">{{ $project->title }}</a></h3>
+                                <h4>{{ $project->category }}</h4>
+                                <div class="portfolio-plus">
+                                    <a href="{{ asset('uploads/'.$project->photo) }}" data-fancybox="gallery">
+                                        <i class="fal fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p2.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p2.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title">
-                                <a href="portfolio-details.html">Marketing Analysis</a>
-                            </h3>
-                            <h4>Consultation, Idea</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p3.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p3.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title"><a href="portfolio-details.html">Busines Idea</a></h3>
-                            <h4>Deaign, Brand</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p4.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p4.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title"><a href="portfolio-details.html">Consultation</a></h3>
-                            <h4>Print, Market</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p5.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p5.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title">
-                                <a href="portfolio-details.html">Digital Marketing</a>
-                            </h3>
-                            <h4>Logo, Busines</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grid-item ">
-                    <div class="tportfolio mb-30">
-                        <div class="tportfolio__img">
-                            <a class="popup-image" href="{{ asset('dist-front/img/portfolio/p6.jpg') }}" data-fancybox="gallery">
-                                <img src="{{ asset('dist-front/img/portfolio/p6.jpg') }}" alt="" />
-                            </a>
-                        </div>
-                        <div class="tportfolio__text">
-                            <h3 class="tportfolio-title">
-                                <a href="portfolio-details.html">Super Experience</a>
-                            </h3>
-                            <h4>Market, Idea</h4>
-                            <div class="portfolio-plus">
-                                <a href="{{ asset('dist-front/img/portfolio/port-1.jpg') }}" data-fancybox="gallery">
-                                    <i class="fal fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -586,7 +490,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="latest-blog mb-30">
                         <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm1.jpg') }}" alt="" />
+                            <img src="{{ asset('dist-front/img/blog/sm1.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
                             <div class="top-date">
                                 <a href="#">15 March 21</a>
                             </div>
@@ -612,7 +516,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="latest-blog mb-30">
                         <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm2.jpg') }}" alt="" />
+                            <img src="{{ asset('dist-front/img/blog/sm2.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
                             <div class="top-date">
                                 <a href="#">22 March 21</a>
                             </div>
@@ -638,7 +542,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="latest-blog mb-30">
                         <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm3.jpg') }}" alt="" />
+                            <img src="{{ asset('dist-front/img/blog/sm3.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
                             <div class="top-date">
                                 <a href="#">28 March 21</a>
                             </div>
