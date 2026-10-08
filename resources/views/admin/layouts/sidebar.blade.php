@@ -19,6 +19,11 @@
             <span class="sidebar-label">About Items</span>
         </a>
 
+        <a href="{{ route('admin.cta.index') }}" class="nav-link {{ request()->routeIs('admin.cta.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span class="sidebar-label">CTA Section</span>
+        </a>
+
         <a href="{{ route('admin.counter-item.index') }}" class="nav-link {{ request()->routeIs('admin.counter-item.*') ? 'active' : '' }}">
             <i class="fa-solid fa-chart-line"></i>
             <span class="sidebar-label">Counter Items</span>

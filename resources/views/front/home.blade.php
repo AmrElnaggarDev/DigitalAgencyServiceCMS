@@ -336,7 +336,7 @@
     </section>
     <!-- / END PORTFOLIO DESIGN AREA -->
 
-    <!-- counter -->
+    <!-- cta start -->
     <section class="cta-area cta-overlay pos-rel black-bg pt-120 pb-120" data-overlay="dark" data-opacity="7">
         <div class="fact-bg slider-bg" data-background="{{ asset('dist-front/img/slider/slider2.jpg') }}"></div>
         <div class="container">
@@ -348,13 +348,11 @@
                         </div>
                     </div>
                     <div class="sec-wrapper z-index">
-                        <h5>Get to Know Binifox</h5>
-                        <h2 class="section-title text-white">
-                            Do you have any question? Feel free to contact us.
-                        </h2>
+                        <h5>{{ $cta_item->subheading }}</h5>
+                        <h2 class="section-title text-white">{{ $cta_item->heading }}</h2>
                         <div class="ab-btn mt-30">
-                            <a href="about.html" class="tp-btn">
-                                Learn More
+                            <a href="{{ $cta_item->button_link }}" class="tp-btn">
+                                {{ $cta_item->button_text }}
                                 <div class="tp-bg">
                                     <div></div>
                                     <div></div>
@@ -367,7 +365,7 @@
             </div>
         </div>
     </section>
-    <!-- counter -->
+    <!-- cta end -->
 
     <!-- blog area start -->
     <div class="latest-news-area pt-120 pb-90">
