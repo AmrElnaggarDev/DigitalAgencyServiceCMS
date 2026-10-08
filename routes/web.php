@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAboutItemController;
+use App\Http\Controllers\Admin\AdminCtaItemController;
 
 
 
@@ -67,6 +68,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/about-item/index', [AdminAboutItemController::class, 'index'])->name('about-item.index');
         Route::post('/about-item/update', [AdminAboutItemController::class, 'update'])->name('about-item.update');
+
+        Route::get('/cta/index', [AdminCtaItemController::class, 'index'])->name('cta.index');
+        Route::post('/cta/update', [AdminCtaItemController::class, 'update'])->name('cta.update');
 
         Route::get('/counter-item/index', [AdminCounterItemController::class, 'index'])->name('counter-item.index');
         Route::post('/counter-item/update', [AdminCounterItemController::class, 'update'])->name('counter-item.update');

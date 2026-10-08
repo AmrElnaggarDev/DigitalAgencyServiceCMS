@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\AboutItem;
 use App\Models\CounterItem;
+use App\Models\CtaItem;
 use App\Models\Faq;
 use App\Models\Project;
 use App\Models\Service;
@@ -19,12 +20,13 @@ class FrontController extends Controller
     {
         $sliders = Slider::orderBy('id','asc')->get();
         $about_item = AboutItem::where ('id', 1)->first();
+        $cta_item = CtaItem::where('id',1)->first();
         $counter_item = CounterItem::where ('id', 1)->first();
         $services = Service::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $team_members = TeamMember::orderBy('id','asc')->get();
         $projects = Project::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $faqs = Faq::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
-        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members', 'projects', 'faqs'));
+        return view('front.home', compact('sliders', 'about_item', 'cta_item', 'counter_item', 'services', 'team_members', 'projects', 'faqs'));
     }
 
     public function about()
