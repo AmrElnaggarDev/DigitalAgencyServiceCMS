@@ -7,6 +7,7 @@ use App\Models\AboutItem;
 use App\Models\CounterItem;
 use App\Models\CtaItem;
 use App\Models\Faq;
+use App\Models\Package;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
@@ -53,7 +54,8 @@ class FrontController extends Controller
 
     public function pricing()
     {
-        return view('front.pricing');
+        $packages = Package::orderBy ('id','asc')->get();
+        return view('front.pricing', compact('packages'));
     }
 
     public function projects()

@@ -54,6 +54,10 @@
             <span class="sidebar-label">FAQs</span>
         </a>
 
+        <a href="{{ route('admin.package.index') }}" class="nav-link {{ request()->routeIs('admin.package.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-tags"></i>
+            <span class="sidebar-label">Packages</span>
+        </a>
 
 
 
