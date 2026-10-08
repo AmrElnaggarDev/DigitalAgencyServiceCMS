@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAboutItemController;
@@ -90,6 +91,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/project/update/{id}', [AdminProjectController::class, 'update'])->name('project.update');
         Route::post('/project/destroy/{id}', [AdminProjectController::class, 'destroy'])->name('project.destroy');
 
+
+        Route::get('/testimonial/index', [AdminTestimonialController::class, 'index'])->name('testimonial.index');
+        Route::post('/testimonial/store', [AdminTestimonialController::class, 'store'])->name('testimonial.store');
+        Route::post('/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('testimonial.update');
+        Route::post('/testimonial/destroy/{id}', [AdminTestimonialController::class, 'destroy'])->name('testimonial.destroy');
     });
 });
 

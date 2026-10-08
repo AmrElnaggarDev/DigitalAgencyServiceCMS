@@ -39,6 +39,13 @@
             <span class="sidebar-label">Projects</span>
         </a>
 
+        <a href="{{ route('admin.testimonial.index') }}" class="nav-link {{ request()->routeIs('admin.testimonial.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-quote-right"></i>
+            <span class="sidebar-label">Testimonials</span>
+        </a>
+
+
+
 {{--        <div class="nav-dropdown">--}}
 {{--            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle">--}}
 {{--                <i class="fa-solid fa-table"></i>--}}

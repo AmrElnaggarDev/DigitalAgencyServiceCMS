@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -29,7 +30,8 @@ class FrontController extends Controller
         $about_item = AboutItem::where ('id', 1)->first();
         $counter_item = CounterItem::where ('id', 1)->first();
         $team_members = TeamMember::orderBy('id','asc')->get();
-        return view('front.about', compact('about_item', 'counter_item', 'team_members'));
+        $testimonials = Testimonial::orderBy('id','asc')->get();
+        return view('front.about', compact('about_item', 'counter_item', 'team_members', 'testimonials'));
     }
 
     public function services()
