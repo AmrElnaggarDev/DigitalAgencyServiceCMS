@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\AboutItem;
 use App\Models\CounterItem;
+use App\Models\Faq;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
@@ -22,7 +23,8 @@ class FrontController extends Controller
         $services = Service::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $team_members = TeamMember::orderBy('id','asc')->get();
         $projects = Project::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
-        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members', 'projects'));
+        $faqs = Faq::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
+        return view('front.home', compact('sliders', 'about_item', 'counter_item', 'services', 'team_members', 'projects', 'faqs'));
     }
 
     public function about()
@@ -80,7 +82,8 @@ class FrontController extends Controller
 
     public function faq ()
     {
-        return view('front.faq');
+        $faqs = Faq::orderBy('id','asc')->get();
+        return view('front.faq', compact('faqs'));
     }
 
     public function blog()
