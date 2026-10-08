@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
@@ -96,7 +97,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/project/update/{id}', [AdminProjectController::class, 'update'])->name('project.update');
         Route::post('/project/destroy/{id}', [AdminProjectController::class, 'destroy'])->name('project.destroy');
 
-
         Route::get('/testimonial/index', [AdminTestimonialController::class, 'index'])->name('testimonial.index');
         Route::post('/testimonial/store', [AdminTestimonialController::class, 'store'])->name('testimonial.store');
         Route::post('/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('testimonial.update');
@@ -107,7 +107,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/faq/update/{id}', [AdminFaqController::class, 'update'])->name('faq.update');
         Route::post('/faq/destroy/{id}', [AdminFaqController::class, 'destroy'])->name('faq.destroy');
 
-
+        Route::get('/package/index', [AdminPackageController::class, 'index'])->name('package.index');
+        Route::post('/package/store', [AdminPackageController::class, 'store'])->name('package.store');
+        Route::post('/package/update/{id}', [AdminPackageController::class, 'update'])->name('package.update');
+        Route::post('/package/destroy/{id}', [AdminPackageController::class, 'destroy'])->name('package.destroy');
+        Route::get('/package/feature/{package_id}', [AdminPackageController::class, 'feature'])->name('package.feature');
+        Route::post('/package/feature/store/{package_id}', [AdminPackageController::class, 'feature_store'])->name('package.feature.store');
+        Route::post('/package/feature/update/{id}', [AdminPackageController::class, 'feature_update'])->name('package.feature.update');
+        Route::post('/package/feature/destroy/{id}', [AdminPackageController::class, 'feature_destroy'])->name('package.feature.destroy');
     });
 });
 
