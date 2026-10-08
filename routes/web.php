@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
+use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
@@ -96,6 +97,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/testimonial/store', [AdminTestimonialController::class, 'store'])->name('testimonial.store');
         Route::post('/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('testimonial.update');
         Route::post('/testimonial/destroy/{id}', [AdminTestimonialController::class, 'destroy'])->name('testimonial.destroy');
+
+        Route::get('/faq/index', [AdminFaqController::class, 'index'])->name('faq.index');
+        Route::post('/faq/store', [AdminFaqController::class, 'store'])->name('faq.store');
+        Route::post('/faq/update/{id}', [AdminFaqController::class, 'update'])->name('faq.update');
+        Route::post('/faq/destroy/{id}', [AdminFaqController::class, 'destroy'])->name('faq.destroy');
+
+
     });
 });
 

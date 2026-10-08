@@ -44,6 +44,12 @@
             <span class="sidebar-label">Testimonials</span>
         </a>
 
+        <a href="{{ route('admin.faq.index') }}" class="nav-link {{ request()->routeIs('admin.faq.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-circle-question"></i>
+            <span class="sidebar-label">FAQs</span>
+        </a>
+
+
 
 
 {{--        <div class="nav-dropdown">--}}
