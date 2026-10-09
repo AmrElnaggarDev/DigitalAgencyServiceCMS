@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutItem;
+use App\Models\Client;
 use App\Models\CounterItem;
 use App\Models\CtaItem;
 use App\Models\Faq;
@@ -36,7 +37,8 @@ class FrontController extends Controller
         $counter_item = CounterItem::where ('id', 1)->first();
         $team_members = TeamMember::orderBy('id','asc')->get();
         $testimonials = Testimonial::orderBy('id','asc')->get();
-        return view('front.about', compact('about_item', 'counter_item', 'team_members', 'testimonials'));
+        $clients = Client::orderBy('id','asc')->get();
+        return view('front.about', compact('about_item', 'counter_item', 'team_members', 'testimonials', 'clients'));
     }
 
     public function services()
