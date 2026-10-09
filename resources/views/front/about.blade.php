@@ -259,24 +259,17 @@
         <div class="container">
             <div class="brand-active swiper-container">
                 <div class="swiper-wrapper align-items-center">
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay=".3s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-1.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay=".6s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-2.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay=".9s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-3.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay="1.2s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-4.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay="1.5s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-5.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
-                    <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay="1.8s" data-swiper-autoplay="10000">
-                        <a href="#"><img src="{{ asset('dist-front/img/brand/brand-1.png') }}" class="img-fluid" alt="img" /></a>
-                    </div>
+                    @foreach($clients as $client)
+                        <div class="brand-wrapper swiper-slide wow fadeInUp" data-wow-delay=".3s" data-swiper-autoplay="10000">
+                            @if($client->link)
+                                <a href="{{ $client->link }}" target="_blank">
+                                    <img src="{{ asset('uploads/'.$client->photo) }}" class="img-fluid" alt="img" style="width: 140px; height: 80px; object-fit: contain; margin: 0 auto; display: block;">
+                                </a>
+                            @else
+                                <img src="{{ asset('uploads/'.$client->photo) }}" class="img-fluid" alt="img" style="width: 140px; height: 80px; object-fit: contain; margin: 0 auto; display: block;">
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

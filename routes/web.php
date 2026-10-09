@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPackageController;
@@ -115,6 +116,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/package/feature/store/{package_id}', [AdminPackageController::class, 'feature_store'])->name('package.feature.store');
         Route::post('/package/feature/update/{id}', [AdminPackageController::class, 'feature_update'])->name('package.feature.update');
         Route::post('/package/feature/destroy/{id}', [AdminPackageController::class, 'feature_destroy'])->name('package.feature.destroy');
+
+
+        Route::get('/client/index', [AdminClientController::class, 'index'])->name('client.index');
+        Route::post('/client/store', [AdminClientController::class, 'store'])->name('client.store');
+        Route::post('/client/update/{id}', [AdminClientController::class, 'update'])->name('client.update');
+        Route::post('/client/destroy/{id}', [AdminClientController::class, 'destroy'])->name('client.destroy');
     });
 });
 

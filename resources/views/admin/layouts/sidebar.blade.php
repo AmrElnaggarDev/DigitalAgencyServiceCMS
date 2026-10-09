@@ -59,6 +59,11 @@
             <span class="sidebar-label">Packages</span>
         </a>
 
+        <a href="{{ route('admin.client.index') }}" class="nav-link {{ request()->routeIs('admin.client.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-handshake"></i>
+            <span class="sidebar-label">Clients</span>
+        </a>
+
 
 
 {{--        <div class="nav-dropdown">--}}
