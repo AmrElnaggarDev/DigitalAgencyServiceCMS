@@ -33,55 +33,70 @@
                         <h2 class="section-title">Speak with our
                             consultant</h2>
                     </div>
-                    <div class="contact-info mr-50 mr-xs-0  mr-md-0">
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="contact-info-icon">
-                                <a href="#"><i class="fad fa-comments"></i></a>
+                    <div class="contact-info mr-50 mr-xs-0 mr-md-0">
+                        @php $contactItem = $contact_page_item; @endphp
+                        @if($contactItem && $contactItem->phone)
+                            <div class="single-contact-info d-flex align-items-center">
+                                <div class="contact-info-icon">
+                                    <a href="#"><i class="fad fa-comments"></i></a>
+                                </div>
+                                <div class="contact-info-text mt-10">
+                                    <span>Call Anytime</span>
+                                    <h5><a href="tel:{{ preg_replace('/[^0-9+]/', '', $contactItem->phone) }}">{{ $contactItem->phone }}</a></h5>
+                                </div>
                             </div>
-                            <div class="contact-info-text mt-10">
-                                <span>Call Anytime</span>
-                                <h5><a href="tell:926668880000">92 666 888 0000</a></h5>
+                        @endif
+
+                        @if($contactItem && $contactItem->email)
+                            <div class="single-contact-info d-flex align-items-center">
+                                <div class="contact-info-icon">
+                                    <a href="#"><i class="fal fa-envelope"></i></a>
+                                </div>
+                                <div class="contact-info-text mt-10">
+                                    <span>send email</span>
+                                    <h5><a href="mailto:{{ $contactItem->email }}">{{ $contactItem->email }}</a></h5>
+                                </div>
                             </div>
-                        </div>
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="contact-info-icon">
-                                <a href="#"><i class="fal fa-envelope"></i></a>
+                        @endif
+
+                        @if($contactItem && $contactItem->address)
+                            <div class="single-contact-info d-flex align-items-center">
+                                <div class="contact-info-icon">
+                                    <a href="#"><i class="fal fa-map-marker-alt"></i></a>
+                                </div>
+                                <div class="contact-info-text mt-10">
+                                    <span>visit office</span>
+                                    <h5>{{ $contactItem->address }}</h5>
+                                </div>
                             </div>
-                            <div class="contact-info-text mt-10">
-                                <span>send email</span>
-                                <h5><a href="mailto:needhelp@company.com">needhelp@company.com</a> </h5>
-                            </div>
-                        </div>
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="contact-info-icon">
-                                <a href="#"><i class="fal fa-map-marker-alt"></i></a>
-                            </div>
-                            <div class="contact-info-text mt-10">
-                                <span>visit office</span>
-                                <h5><a target="_blank" href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">86 Road Broklyn Street, New York</a></h5>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xxl-7 col-xl-6 col-lg-6">
                     <div class="contact-form">
-                        <form action="" id="contact-form" method="POST">
+                        @if(session('success'))
+                            <div class="alert alert-success mb-3">{{ session('success') }}</div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger mb-3">{{ session('error') }}</div>
+                        @endif
+                        <form action="{{ route('contact.submit') }}" id="contact-form" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 mb-20">
-                                    <input name="name" type="text" placeholder="Your Name">
+                                    <input name="name" type="text" placeholder="Your Name" value="{{ old('name') }}">
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 mb-20">
-                                    <input name="email" type="email" placeholder="Email Adress">
+                                    <input name="email" type="email" placeholder="Email Adress" value="{{ old('email') }}">
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 mb-20">
-                                    <input name="phone" type="text" placeholder="Phone">
+                                    <input name="phone" type="text" placeholder="Phone" value="{{ old('phone') }}">
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 mb-20">
-                                    <input name="subject" type="text" placeholder="Subject">
+                                    <input name="subject" type="text" placeholder="Subject" value="{{ old('subject') }}">
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 mb-20">
-                                    <textarea placeholder="Write Massage" name="massage"></textarea>
+                                    <textarea placeholder="Write Massage" name="massage">{{ old('massage') }}</textarea>
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 mb-20">
                                     <button type="submit" class="tp-btn">Send a message</button>
@@ -96,11 +111,13 @@
     </section>
     <!-- contact area end -->
 
-    <!-- contact map area  -->
-    <div class="contact-map">
-        <div id="contact-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14596.901068434778!2d90.3654296!3d23.8461333!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1625139542728!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    @if($contactItem && $contactItem->map_iframe)
+        <!-- contact map area  -->
+        <div class="contact-map">
+            <div id="contact-map">
+                {!! $contactItem->map_iframe !!}
+            </div>
         </div>
-    </div>
-    <!-- contact map area end  -->
+        <!-- contact map area end  -->
+    @endif
 @endsection
