@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminCtaItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
@@ -33,7 +34,7 @@ Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
-Route::get('photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
+Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
 Route::get('/terms-of-use', [FrontController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [FrontController::class, 'privacy'])->name('privacy');
 
@@ -127,6 +128,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/contact-page/index', [AdminContactPageController::class, 'index'])->name('contact-page.index');
         Route::post('/contact-page/update', [AdminContactPageController::class, 'update'])->name('contact-page.update');
+
+        Route::get('/photo/index', [AdminPhotoController::class, 'index'])->name('photo.index');
+        Route::post('/photo/store', [AdminPhotoController::class, 'store'])->name('photo.store');
+        Route::post('/photo/update/{id}', [AdminPhotoController::class, 'update'])->name('photo.update');
+        Route::post('/photo/destroy/{id}', [AdminPhotoController::class, 'destroy'])->name('photo.destroy');
     });
 });
 
