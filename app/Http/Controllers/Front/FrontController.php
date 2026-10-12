@@ -12,6 +12,7 @@ use App\Models\CounterItem;
 use App\Models\CtaItem;
 use App\Models\Faq;
 use App\Models\Package;
+use App\Models\Photo;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
@@ -144,7 +145,8 @@ class FrontController extends Controller
 
     public function photo_gallery()
     {
-        return view('front.photo_gallery');
+        $photos = Photo::orderBy('id','asc')->paginate(6);
+        return view('front.photo_gallery', compact('photos'));
     }
 
     public function terms()

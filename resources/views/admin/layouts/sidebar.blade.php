@@ -69,6 +69,11 @@
             <span class="sidebar-label">Contact Page</span>
         </a>
 
+        <a href="{{ route('admin.photo.index') }}" class="nav-link {{ request()->routeIs('admin.photo.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-images"></i>
+            <span class="sidebar-label">Photo Gallery</span>
+        </a>
+
 
 {{--        <div class="nav-dropdown">--}}
 {{--            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle">--}}
