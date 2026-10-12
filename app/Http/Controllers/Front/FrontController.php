@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Websitemail;
 use App\Models\AboutItem;
+use App\Models\Admin;
 use App\Models\Client;
+use App\Models\ContactPageItem;
 use App\Models\CounterItem;
 use App\Models\CtaItem;
 use App\Models\Faq;
@@ -15,6 +18,7 @@ use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -104,7 +108,38 @@ class FrontController extends Controller
 
     public function contact()
     {
-        return view('front.contact');
+        $contact_page_item = ContactPageItem::first();
+        return view('front.contact', compact('contact_page_item'));
+    }
+
+    public function contact_submit(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'nullable|string|max:255',
+            'subject' => 'required|string|max:255',
+            'massage' => 'required|string',
+        ]);
+
+        $adminEmail = Admin::query()->value('email');
+
+        if (empty($adminEmail)) {
+            return back()->with('error', 'No admin email is configured.')->withInput();
+        }
+
+        $subject = 'New contact message: ' . $request->subject;
+        $message = '<h3>Contact form message</h3>';
+        $message .= '<p><strong>Name:</strong> ' . e($request->name) . '</p>';
+        $message .= '<p><strong>Email:</strong> ' . e($request->email) . '</p>';
+        $message .= '<p><strong>Phone:</strong> ' . e($request->phone ?? 'N/A') . '</p>';
+        $message .= '<p><strong>Subject:</strong> ' . e($request->subject) . '</p>';
+        $message .= '<p><strong>Message:</strong></p>';
+        $message .= '<p>' . nl2br(e($request->massage)) . '</p>';
+
+        Mail::to($adminEmail)->send(new Websitemail($subject, $message));
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully.');
     }
 
     public function photo_gallery()

@@ -64,6 +64,10 @@
             <span class="sidebar-label">Clients</span>
         </a>
 
+        <a href="{{ route('admin.contact-page.index') }}" class="nav-link {{ request()->routeIs('admin.contact-page.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-address-book"></i>
+            <span class="sidebar-label">Contact Page</span>
+        </a>
 
 
 {{--        <div class="nav-dropdown">--}}

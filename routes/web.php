@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminAboutItemController;
 use App\Http\Controllers\Admin\AdminClientController;
+use App\Http\Controllers\Admin\AdminContactPageController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
+use App\Http\Controllers\Admin\AdminCtaItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -13,8 +16,6 @@ use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminAboutItemController;
-use App\Http\Controllers\Admin\AdminCtaItemController;
 
 
 
@@ -31,6 +32,7 @@ Route::get('/faq', [FrontController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
 Route::get('photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
 Route::get('/terms-of-use', [FrontController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [FrontController::class, 'privacy'])->name('privacy');
@@ -122,6 +124,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/client/store', [AdminClientController::class, 'store'])->name('client.store');
         Route::post('/client/update/{id}', [AdminClientController::class, 'update'])->name('client.update');
         Route::post('/client/destroy/{id}', [AdminClientController::class, 'destroy'])->name('client.destroy');
+
+        Route::get('/contact-page/index', [AdminContactPageController::class, 'index'])->name('contact-page.index');
+        Route::post('/contact-page/update', [AdminContactPageController::class, 'update'])->name('contact-page.update');
     });
 });
 
