@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\AdminCtaItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
+use App\Http\Controllers\Admin\AdminPostCategoryController;
+use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
@@ -34,6 +36,18 @@ Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
+
+// Temporary comment/reply stub routes to avoid missing route errors while
+// comment/reply feature is being implemented. They redirect back with a
+// friendly message and do not delete existing view/code.
+Route::post('/post/{id}/comment', function (\Illuminate\Http\Request $request, $id) {
+    return redirect()->back()->with('error', 'Comments are temporarily disabled.');
+})->name('post.comment.submit');
+
+Route::post('/comment/{id}/reply', function (\Illuminate\Http\Request $request, $id) {
+    return redirect()->back()->with('error', 'Replies are temporarily disabled.');
+})->name('comment.reply.submit');
+
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
 Route::get('/terms-of-use', [FrontController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [FrontController::class, 'privacy'])->name('privacy');
@@ -133,6 +147,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/photo/store', [AdminPhotoController::class, 'store'])->name('photo.store');
         Route::post('/photo/update/{id}', [AdminPhotoController::class, 'update'])->name('photo.update');
         Route::post('/photo/destroy/{id}', [AdminPhotoController::class, 'destroy'])->name('photo.destroy');
+
+
+        Route::get('/post-category/index', [AdminPostCategoryController::class, 'index'])->name('post_category.index');
+        Route::post('/post-category/store', [AdminPostCategoryController::class, 'store'])->name('post_category.store');
+        Route::post('/post-category/update/{id}', [AdminPostCategoryController::class, 'update'])->name('post_category.update');
+        Route::post('/post-category/destroy/{id}', [AdminPostCategoryController::class, 'destroy'])->name('post_category.destroy');
+
+        Route::get('/post/index', [AdminPostController::class, 'index'])->name('post.index');
+        Route::post('/post/store', [AdminPostController::class, 'store'])->name('post.store');
+        Route::post('/post/update/{id}', [AdminPostController::class, 'update'])->name('post.update');
+        Route::post('/post/destroy/{id}', [AdminPostController::class, 'destroy'])->name('post.destroy');
+
     });
 });
 

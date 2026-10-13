@@ -18,6 +18,8 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
+use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -99,12 +101,63 @@ class FrontController extends Controller
 
     public function blog()
     {
-        return view('front.blog');
+        $posts = Post::orderBy('id','desc')->paginate(3);
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.blog', compact('posts', 'categories', 'recent_posts', 'all_tags'));
+    }
+
+    public function category($slug)
+    {
+        $category = PostCategory::where('slug', $slug)->firstOrFail();
+        $posts = Post::where('post_category_id', $category->id)->orderBy('id','desc')->paginate(3);
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.category', compact('posts', 'category', 'categories', 'recent_posts', 'all_tags'));
     }
 
     public function post($id)
     {
-        return view('front.post', compact('id'));
+        // Load the post; if Post model exists this will work as expected
+        $post = Post::with('category')->findOrFail($id);
+
+        // Provide a safe $comments collection so the view can render even
+        // if comment/reply models or relations aren't fully implemented yet.
+        $comments = collect();
+
+        if (class_exists(\App\Models\Comment::class)) {
+            try {
+                $comments = \App\Models\Comment::where('post_id', $post->id)
+                    ->where('approved', 1)
+                    ->with(['replies'])
+                    ->get();
+            } catch (\Throwable $e) {
+                // If comments or relations throw, fall back to empty collection
+                $comments = collect();
+            }
+
+            // Ensure replies is always a collection to avoid undefined errors in views
+            $comments = $comments->map(function ($c) {
+                if (! isset($c->replies) || $c->replies === null) {
+                    $c->replies = collect();
+                }
+                return $c;
+            });
+        }
+
+        return view('front.post', compact('post', 'comments'));
     }
 
     public function contact()
