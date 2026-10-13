@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\AdminCtaItemController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
+use App\Http\Controllers\Admin\AdminPostCategoryController;
+use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
@@ -31,6 +33,9 @@ Route::get('/team-members', [FrontController::class, 'team_members'])->name('tea
 Route::get('/team-member/{slug}', [FrontController::class, 'team_member'])->name('team_member');
 Route::get('/faq', [FrontController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
+Route::get('/blog/category/{slug}', [FrontController::class, 'category'])->name('blog.category');
+Route::get('/blog/tag/{tag}', [FrontController::class, 'tag'])->name('blog.tag');
+Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.search');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
@@ -133,6 +138,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/photo/store', [AdminPhotoController::class, 'store'])->name('photo.store');
         Route::post('/photo/update/{id}', [AdminPhotoController::class, 'update'])->name('photo.update');
         Route::post('/photo/destroy/{id}', [AdminPhotoController::class, 'destroy'])->name('photo.destroy');
+
+
+        Route::get('/post-category/index', [AdminPostCategoryController::class, 'index'])->name('post_category.index');
+        Route::post('/post-category/store', [AdminPostCategoryController::class, 'store'])->name('post_category.store');
+        Route::post('/post-category/update/{id}', [AdminPostCategoryController::class, 'update'])->name('post_category.update');
+        Route::post('/post-category/destroy/{id}', [AdminPostCategoryController::class, 'destroy'])->name('post_category.destroy');
+
+        Route::get('/post/index', [AdminPostController::class, 'index'])->name('post.index');
+        Route::post('/post/store', [AdminPostController::class, 'store'])->name('post.store');
+        Route::post('/post/update/{id}', [AdminPostController::class, 'update'])->name('post.update');
+        Route::post('/post/destroy/{id}', [AdminPostController::class, 'destroy'])->name('post.destroy');
+
     });
 });
 

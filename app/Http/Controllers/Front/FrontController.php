@@ -13,6 +13,8 @@ use App\Models\CtaItem;
 use App\Models\Faq;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\Post;
+use App\Models\PostCategory;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
@@ -99,12 +101,71 @@ class FrontController extends Controller
 
     public function blog()
     {
-        return view('front.blog');
+        $posts = Post::orderBy('id','desc')->paginate(3);
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.blog', compact('posts', 'categories', 'recent_posts', 'all_tags'));
     }
 
-    public function post($id)
+    public function category($slug)
     {
-        return view('front.post', compact('id'));
+        $category = PostCategory::where('slug', $slug)->firstOrFail();
+        $posts = Post::where('post_category_id', $category->id)->orderBy('id','desc')->paginate(3);
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.category', compact('posts', 'category', 'categories', 'recent_posts', 'all_tags'));
+    }
+
+
+    public function tag($tag)
+    {
+        $posts = Post::whereRaw("FIND_IN_SET(?, REPLACE(tags, ' ', ''))", [str_replace(' ', '', $tag)])
+            ->orderBy('id', 'desc')
+            ->paginate(3);
+
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($singleTag) {
+            return trim($singleTag);
+        })->filter()->unique()->values();
+
+        return view('front.tag', compact('posts', 'tag', 'categories', 'recent_posts', 'all_tags'));
+    }
+
+    public function search(Request $request)
+    {
+
+    }
+
+    public function post($slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+//        $comments = Comment::with(['replies' => function($query) {
+//            $query->where('status', 'Approved')->orderBy('id', 'asc');
+//        }])->where('post_id', $post->id)->where('status', 'Approved')->orderBy('id', 'desc')->get();
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.post', compact('post', 'categories', 'recent_posts', 'all_tags'));
     }
 
     public function contact()
