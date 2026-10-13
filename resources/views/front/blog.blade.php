@@ -31,7 +31,7 @@
                         @foreach($posts as $post)
                             <div class="blog-wrap blog-item mb-50">
                                 <div class="blog-thumb">
-                                    <img src="{{ asset('uploads/'.$post->photo) }}" alt="blog">
+                                    <img src="{{ !empty($post->photo) ? asset('uploads/'.$post->photo) : asset('dist-front/img/blog/blog-1.jpg') }}" alt="blog" style="width: 100%; height: auto; display: block;">
                                 </div>
                                 <div class="blog-details blog-details-2">
                                     <ul class="blog-meta">
