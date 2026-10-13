@@ -379,84 +379,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="latest-blog mb-30">
-                        <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm1.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
-                            <div class="top-date">
-                                <a href="#">15 March 21</a>
+                @foreach($recent_posts as $recent_post)
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="latest-blog mb-30">
+                            <div class="latest-blog-img pos-rel">
+                                <img src="{{ asset('uploads/'.$recent_post->photo) }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
+                                <div class="top-date">
+                                    <a href="#">{{ $recent_post->created_at->format('d F Y') }}</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="latest-blog-content">
-                            <div class="latest-post-meta mb-15">
-                                        <span
-                                        ><a href="#"><i class="far fa-user"></i> Diboli </a></span
-                                        >
-                                <span
-                                ><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span
-                                >
-                            </div>
-                            <h3 class="latest-blog-title">
-                                <a href="{{ route ('post', 1) }}">Time is money but its not full demand.</a>
-                            </h3>
-                            <div class="blog-arrow">
-                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
+                            <div class="latest-blog-content">
+                                <div class="latest-post-meta mb-15">
+                                    <span><a href="#"><i class="far fa-user"></i> Diboli </a></span>
+                                </div>
+                                <h3 class="latest-blog-title">
+                                    <a href="{{ route('post', $recent_post->slug) }}">{{ $recent_post->title }}</a>
+                                </h3>
+                                <div class="blog-arrow">
+                                    <a href="{{ route('post', $recent_post->slug) }}"><i class="fal fa-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="latest-blog mb-30">
-                        <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm2.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
-                            <div class="top-date">
-                                <a href="#">22 March 21</a>
-                            </div>
-                        </div>
-                        <div class="latest-blog-content">
-                            <div class="latest-post-meta mb-15">
-                                        <span
-                                        ><a href="#"><i class="far fa-user"></i> Diboli </a></span
-                                        >
-                                <span
-                                ><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span
-                                >
-                            </div>
-                            <h3 class="latest-blog-title">
-                                <a href="{{ route ('post', 1) }}">We Are Trying To Do Best Work.</a>
-                            </h3>
-                            <div class="blog-arrow">
-                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="latest-blog mb-30">
-                        <div class="latest-blog-img pos-rel">
-                            <img src="{{ asset('dist-front/img/blog/sm3.jpg') }}" alt="" style="width: 100%; height: 240px; object-fit: cover;" />
-                            <div class="top-date">
-                                <a href="#">28 March 21</a>
-                            </div>
-                        </div>
-                        <div class="latest-blog-content">
-                            <div class="latest-post-meta mb-15">
-                                        <span
-                                        ><a href="#"><i class="far fa-user"></i> Diboli </a></span
-                                        >
-                                <span
-                                ><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span
-                                >
-                            </div>
-                            <h3 class="latest-blog-title">
-                                <a href="{{ route ('post', 1) }}">Nature is The best place for fresh mind.</a>
-                            </h3>
-                            <div class="blog-arrow">
-                                <a href="{{ route ('post', 1) }}"><i class="fal fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
