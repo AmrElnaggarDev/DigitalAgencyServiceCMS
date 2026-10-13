@@ -36,7 +36,7 @@ Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/blog/category/{slug}', [FrontController::class, 'category'])->name('blog.category');
 Route::get('/blog/tag/{tag}', [FrontController::class, 'tag'])->name('blog.tag');
 Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.search');
-Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
+Route::get('/post/{slug}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');

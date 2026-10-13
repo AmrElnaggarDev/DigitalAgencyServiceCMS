@@ -44,40 +44,19 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 d-lg-none d-xl-block">
                     <div class="footer-widget mb-30">
                         <h3 class="footer-title">Latest Post</h3>
+                        @php $recent_posts = \App\Models\Post::orderBy('id','desc')->take(3)->get(); @endphp
                         <div class="blog-feeds pr-15">
-                            <div class="signle-blog-feeds mb-20">
-                                <div class="blog-feeds-thumb">
-                                    <a href="blog-details.html"><img src="{{ asset('dist-front/img/blog/sm3.jpg') }}" alt="" /></a>
+                            @foreach($recent_posts as $recent_post)
+                                <div class="signle-blog-feeds mb-20">
+                                    <div class="blog-feeds-thumb">
+                                        <a href="{{ route('post', $recent_post->slug) }}"><img src="{{ asset('uploads/'.$recent_post->photo) }}" alt="" /></a>
+                                    </div>
+                                    <div class="blog-feeds-text">
+                                        <h5><a href="{{ route('post', $recent_post->slug) }}">{{ $recent_post->title }}</a></h5>
+                                        <span class="feeds-date">{{ $recent_post->created_at->format('d F Y') }}</span>
+                                    </div>
                                 </div>
-                                <div class="blog-feeds-text">
-                                    <h5>
-                                        <a href="blog-details.html"
-                                        >Lorem ipsum dolor sit am et, consectetur.</a
-                                        >
-                                    </h5>
-                                    <span class="feeds-date">14 July 2019</span>
-                                </div>
-                            </div>
-                            <div class="signle-blog-feeds mb-20">
-                                <div class="blog-feeds-thumb">
-                                    <a href="blog-details.html"><img src="{{ asset('dist-front/img/blog/sm2.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="blog-feeds-text">
-                                    <h5><a href="blog-details.html">We Are Trying To Do Best Work.</a></h5>
-                                    <span class="feeds-date">14 July 2019</span>
-                                </div>
-                            </div>
-                            <div class="signle-blog-feeds mb-20">
-                                <div class="blog-feeds-thumb">
-                                    <a href="blog-details.html"><img src="{{ asset('dist-front/img/blog/sm1.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="blog-feeds-text">
-                                    <h5>
-                                        <a href="blog-details.html">Nature is The best place for fresh mind.</a>
-                                    </h5>
-                                    <span class="feeds-date">14 July 2019</span>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

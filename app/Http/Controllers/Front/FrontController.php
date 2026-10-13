@@ -35,7 +35,8 @@ class FrontController extends Controller
         $team_members = TeamMember::orderBy('id','asc')->get();
         $projects = Project::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $faqs = Faq::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
-        return view('front.home', compact('sliders', 'about_item', 'cta_item', 'counter_item', 'services', 'team_members', 'projects', 'faqs'));
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        return view('front.home', compact('sliders', 'about_item', 'cta_item', 'counter_item', 'services', 'team_members', 'projects', 'faqs', 'recent_posts'));
     }
 
     public function about()
@@ -148,7 +149,27 @@ class FrontController extends Controller
 
     public function search(Request $request)
     {
+        $search_text = trim($request->q ?? '');
 
+        $query = Post::query();
+
+        if($search_text !== '') {
+            $query->where('title', 'like', '%'.$search_text.'%')
+                ->orWhere('description', 'like', '%'.$search_text.'%');
+        } else {
+            $query->whereRaw('1=0');
+        }
+
+        $posts = $query->orderBy('id','desc')->paginate(3)->withQueryString();
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($singleTag) {
+            return trim($singleTag);
+        })->filter()->unique()->values();
+
+        return view('front.search', compact('posts', 'search_text', 'categories', 'recent_posts', 'all_tags'));
     }
 
     public function post($slug)
