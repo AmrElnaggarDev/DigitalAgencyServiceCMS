@@ -13,13 +13,13 @@ use App\Models\CtaItem;
 use App\Models\Faq;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\Post;
+use App\Models\PostCategory;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
-use App\Models\Post;
-use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -128,36 +128,44 @@ class FrontController extends Controller
         return view('front.category', compact('posts', 'category', 'categories', 'recent_posts', 'all_tags'));
     }
 
-    public function post($id)
+
+    public function tag($tag)
     {
-        // Load the post; if Post model exists this will work as expected
-        $post = Post::with('category')->findOrFail($id);
+        $posts = Post::whereRaw("FIND_IN_SET(?, REPLACE(tags, ' ', ''))", [str_replace(' ', '', $tag)])
+            ->orderBy('id', 'desc')
+            ->paginate(3);
 
-        // Provide a safe $comments collection so the view can render even
-        // if comment/reply models or relations aren't fully implemented yet.
-        $comments = collect();
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($singleTag) {
+            return trim($singleTag);
+        })->filter()->unique()->values();
 
-        if (class_exists(\App\Models\Comment::class)) {
-            try {
-                $comments = \App\Models\Comment::where('post_id', $post->id)
-                    ->where('approved', 1)
-                    ->with(['replies'])
-                    ->get();
-            } catch (\Throwable $e) {
-                // If comments or relations throw, fall back to empty collection
-                $comments = collect();
-            }
+        return view('front.tag', compact('posts', 'tag', 'categories', 'recent_posts', 'all_tags'));
+    }
 
-            // Ensure replies is always a collection to avoid undefined errors in views
-            $comments = $comments->map(function ($c) {
-                if (! isset($c->replies) || $c->replies === null) {
-                    $c->replies = collect();
-                }
-                return $c;
-            });
-        }
+    public function search(Request $request)
+    {
 
-        return view('front.post', compact('post', 'comments'));
+    }
+
+    public function post($slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+//        $comments = Comment::with(['replies' => function($query) {
+//            $query->where('status', 'Approved')->orderBy('id', 'asc');
+//        }])->where('post_id', $post->id)->where('status', 'Approved')->orderBy('id', 'desc')->get();
+        $categories = PostCategory::orderBy('name','asc')->get();
+        $recent_posts = Post::orderBy('id','desc')->take(3)->get();
+        $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
+            return explode(',', $tags);
+        })->map(function ($tag) {
+            return trim($tag);
+        })->filter()->unique()->values();
+
+        return view('front.post', compact('post', 'categories', 'recent_posts', 'all_tags'));
     }
 
     public function contact()

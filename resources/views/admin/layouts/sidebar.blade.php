@@ -9,6 +9,21 @@
             <span class="sidebar-label">Dashboard</span>
         </a>
 
+
+        <div class="nav-dropdown">
+            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.post_category.*') || request()->routeIs('admin.post.*') || request()->routeIs('admin.comment.*') || request()->routeIs('admin.reply.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-blog"></i>
+                <span class="sidebar-label">Blog</span>
+                <i class="fa-solid fa-chevron-right nav-arrow sidebar-label"></i>
+            </a>
+            <div class="nav-dropdown-menu">
+                <a href="{{ route('admin.post_category.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post_category.*') ? 'active' : '' }}">Category</a>
+                <a href="{{ route('admin.post.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post.*') ? 'active' : '' }}">Post</a>
+{{--                <a href="{{ route('') }}" class="nav-link nav-sub-link {{ request()->routeIs('') ? 'active' : '' }}">Comment</a>--}}
+{{--                <a href="{{ route('') }}" class="nav-link nav-sub-link {{ request()->routeIs('') ? 'active' : '' }}">Reply</a>--}}
+            </div>
+        </div>
+
         <a href="{{ route('admin.slider.index') }}" class="nav-link {{ request()->routeIs('admin.slider.index') ? 'active' : '' }}">
             <i class="fa-solid fa-images"></i>
             <span class="sidebar-label">Slider</span>

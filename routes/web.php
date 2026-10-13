@@ -33,21 +33,12 @@ Route::get('/team-members', [FrontController::class, 'team_members'])->name('tea
 Route::get('/team-member/{slug}', [FrontController::class, 'team_member'])->name('team_member');
 Route::get('/faq', [FrontController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
+Route::get('/blog/category/{slug}', [FrontController::class, 'category'])->name('blog.category');
+Route::get('/blog/tag/{tag}', [FrontController::class, 'tag'])->name('blog.tag');
+Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.search');
 Route::get('/post/{id}', [FrontController::class, 'post'])->name('post');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
-
-// Temporary comment/reply stub routes to avoid missing route errors while
-// comment/reply feature is being implemented. They redirect back with a
-// friendly message and do not delete existing view/code.
-Route::post('/post/{id}/comment', function (\Illuminate\Http\Request $request, $id) {
-    return redirect()->back()->with('error', 'Comments are temporarily disabled.');
-})->name('post.comment.submit');
-
-Route::post('/comment/{id}/reply', function (\Illuminate\Http\Request $request, $id) {
-    return redirect()->back()->with('error', 'Replies are temporarily disabled.');
-})->name('comment.reply.submit');
-
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
 Route::get('/terms-of-use', [FrontController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [FrontController::class, 'privacy'])->name('privacy');
