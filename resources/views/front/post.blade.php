@@ -63,14 +63,62 @@
                             </div>
                         </div>
 
-                        <!-- Comment Section Placeholder: Will be implemented later -->
                         <div class="post-comments mb-95 wow fadeInUp" data-wow-delay=".6s">
                             <div class="post-comment-title mb-40">
-                                <h3>Comments (0)</h3>
+                                <h3>Comments ({{ $comments->count() }})</h3>
                             </div>
                             <div class="latest-comments">
-                                <p>Comments feature coming soon.</p>
+                                @if($comments->count())
+                                    <ul>
+                                        @foreach($comments as $comment)
+                                            @php
+                                                $commentHash = md5(strtolower(trim($comment->email ?? '')));
+                                            @endphp
+                                            <li>
+                                                <div class="comments-box">
+                                                    <div class="comments-avatar">
+                                                        <img src="https://www.gravatar.com/avatar/{{ $commentHash }}?s=80&d=mp" alt="">
+                                                    </div>
+                                                    <div class="comments-text">
+                                                        <div class="avatar-name">
+                                                            <h5>{{ $comment->name }}</h5>
+                                                            <span class="post-meta">{{ $comment->created_at->format('F d, Y') }}</span>
+                                                        </div>
+                                                        <p>{{ $comment->comment }}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p>No approved comments yet.</p>
+                                @endif
                             </div>
+                        </div>
+                        <div class="post-comment-form wow fadeInUp" data-wow-delay=".2s">
+                            <h4>Leave a Comment</h4>
+                            <span>Your email address will not be published.</span>
+                            <form action="{{ route('post.comment.submit', $post->id) }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6">
+                                        <div class="post-input">
+                                            <input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6">
+                                        <div class="post-input">
+                                            <input type="email" name="email" placeholder="Your Email" value="{{ old('email') }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="post-input">
+                                            <textarea name="comment" placeholder="Your message..." required>{{ old('comment') }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="tp-btn">Send Message</button>
+                            </form>
                         </div>
 
                     </div>
