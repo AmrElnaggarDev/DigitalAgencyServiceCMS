@@ -16,6 +16,7 @@ use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\Project;
+use App\Models\Comment;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
@@ -175,9 +176,10 @@ class FrontController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-//        $comments = Comment::with(['replies' => function($query) {
-//            $query->where('status', 'Approved')->orderBy('id', 'asc');
-//        }])->where('post_id', $post->id)->where('status', 'Approved')->orderBy('id', 'desc')->get();
+        $comments = Comment::where('post_id', $post->id)
+            ->where('status', 'Approved')
+            ->orderBy('id', 'desc')
+            ->get();
         $categories = PostCategory::orderBy('name','asc')->get();
         $recent_posts = Post::orderBy('id','desc')->take(3)->get();
         $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {
@@ -186,7 +188,7 @@ class FrontController extends Controller
             return trim($tag);
         })->filter()->unique()->values();
 
-        return view('front.post', compact('post', 'categories', 'recent_posts', 'all_tags'));
+        return view('front.post', compact('post', 'comments', 'categories', 'recent_posts', 'all_tags'));
     }
 
     public function contact()

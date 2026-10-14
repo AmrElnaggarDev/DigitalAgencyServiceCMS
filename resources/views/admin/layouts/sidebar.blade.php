@@ -19,8 +19,7 @@
             <div class="nav-dropdown-menu">
                 <a href="{{ route('admin.post_category.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post_category.*') ? 'active' : '' }}">Category</a>
                 <a href="{{ route('admin.post.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post.*') ? 'active' : '' }}">Post</a>
-{{--                <a href="{{ route('') }}" class="nav-link nav-sub-link {{ request()->routeIs('') ? 'active' : '' }}">Comment</a>--}}
-{{--                <a href="{{ route('') }}" class="nav-link nav-sub-link {{ request()->routeIs('') ? 'active' : '' }}">Reply</a>--}}
+                <a href="{{ route('admin.comment.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.comment.*') ? 'active' : '' }}">Comment</a>
             </div>
         </div>
 

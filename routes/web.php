@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminAboutItemController;
 use App\Http\Controllers\Admin\AdminClientController;
+use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminContactPageController;
 use App\Http\Controllers\Admin\AdminCounterItemController;
 use App\Http\Controllers\Admin\AdminCtaItemController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Front\FrontCommentController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,7 @@ Route::get('/blog/category/{slug}', [FrontController::class, 'category'])->name(
 Route::get('/blog/tag/{tag}', [FrontController::class, 'tag'])->name('blog.tag');
 Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.search');
 Route::get('/post/{slug}', [FrontController::class, 'post'])->name('post');
+Route::post('/post/{postId}/comment', [FrontCommentController::class, 'store'])->name('post.comment.submit');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
@@ -149,6 +152,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/post/store', [AdminPostController::class, 'store'])->name('post.store');
         Route::post('/post/update/{id}', [AdminPostController::class, 'update'])->name('post.update');
         Route::post('/post/destroy/{id}', [AdminPostController::class, 'destroy'])->name('post.destroy');
+
+        Route::get('/comment/index', [AdminCommentController::class, 'index'])->name('comment.index');
+        Route::post('/comment/approve/{id}', [AdminCommentController::class, 'approve'])->name('comment.approve');
+        Route::post('/comment/reject/{id}', [AdminCommentController::class, 'reject'])->name('comment.reject');
+        Route::post('/comment/destroy/{id}', [AdminCommentController::class, 'destroy'])->name('comment.destroy');
 
     });
 });
