@@ -17,6 +17,7 @@ use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\Project;
 use App\Models\Comment;
+use App\Models\Reply;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\TeamMember;
@@ -180,6 +181,14 @@ class FrontController extends Controller
             ->where('status', 'Approved')
             ->orderBy('id', 'desc')
             ->get();
+
+        foreach ($comments as $comment) {
+            $comment->replies = Reply::where('comment_id', $comment->id)
+                ->where('status', 'Approved')
+                ->orderBy('id', 'asc')
+                ->get();
+        }
+
         $categories = PostCategory::orderBy('name','asc')->get();
         $recent_posts = Post::orderBy('id','desc')->take(3)->get();
         $all_tags = Post::pluck('tags')->filter()->flatMap(function ($tags) {

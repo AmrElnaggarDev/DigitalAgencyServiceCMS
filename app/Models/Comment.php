@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'comment_id');
+    }
 }
