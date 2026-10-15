@@ -85,40 +85,93 @@
                                                             <span class="post-meta">{{ $comment->created_at->format('F d, Y') }}</span>
                                                         </div>
                                                         <p>{{ $comment->comment }}</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <p>No approved comments yet.</p>
-                                @endif
-                            </div>
+
+                                                       <a href="#replyForm{{ $comment->id }}" class="comment-reply" data-bs-toggle="collapse">Reply</a>
+                                                       <div class="collapse mt-20" id="replyForm{{ $comment->id }}">
+                                                           <form action="{{ route('comment.reply.submit', $comment->id) }}" method="post">
+                                                               @csrf
+                                                               <div class="row">
+                                                                   <div class="col-xl-6 col-md-6">
+                                                                       <div class="post-input">
+                                                                           <input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}" required>
+                                                                       </div>
+                                                                   </div>
+                                                                   <div class="col-xl-6 col-md-6">
+                                                                       <div class="post-input">
+                                                                           <input type="email" name="email" placeholder="Your Email" value="{{ old('email') }}">
+                                                                       </div>
+                                                                   </div>
+                                                                   <div class="col-xl-12">
+                                                                       <div class="post-input">
+                                                                           <textarea name="reply" placeholder="Your reply..." required>{{ old('reply') }}</textarea>
+                                                                       </div>
+                                                                   </div>
+                                                                   <div class="col-xl-12">
+                                                                       <button type="submit" class="tp-btn">Submit Reply</button>
+                                                                   </div>
+                                                               </div>
+                                                           </form>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @if($comment->replies->count())
+                                               @foreach($comment->replies as $reply)
+                                                   @php
+                                                       $replyHash = md5(strtolower(trim($reply->email ?? '')));
+                                                   @endphp
+                                                   <li class="children">
+                                                       <div class="comments-box {{ $reply->person_type == 'Admin' ? 'admin-reply' : '' }}">
+                                                           <div class="comments-avatar">
+                                                               <img src="https://www.gravatar.com/avatar/{{ $replyHash }}?s=80&d=mp" alt="">
+                                                           </div>
+                                                           <div class="comments-text">
+                                                               <div class="avatar-name">
+                                                                   <h5>
+                                                                       {{ $reply->name }}
+                                                                       @if($reply->person_type == 'Admin')
+                                                                           <span class="badge bg-warning text-dark">Admin</span>
+                                                                       @endif
+                                                                   </h5>
+                                                                   <span class="post-meta">{{ $reply->created_at->format('F d, Y') }}</span>
+                                                               </div>
+                                                               <p>{{ $reply->reply }}</p>
+                                                           </div>
+                                                       </div>
+                                                   </li>
+                                               @endforeach
+                                           @endif
+                                       @endforeach
+                                   </ul>
+                               @else
+                                   <p>No approved comments yet.</p>
+                               @endif
+                           </div>
                         </div>
                         <div class="post-comment-form wow fadeInUp" data-wow-delay=".2s">
-                            <h4>Leave a Comment</h4>
-                            <span>Your email address will not be published.</span>
-                            <form action="{{ route('post.comment.submit', $post->id) }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-xl-6 col-md-6">
-                                        <div class="post-input">
-                                            <input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-md-6">
-                                        <div class="post-input">
-                                            <input type="email" name="email" placeholder="Your Email" value="{{ old('email') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <div class="post-input">
-                                            <textarea name="comment" placeholder="Your message..." required>{{ old('comment') }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="tp-btn">Send Message</button>
-                            </form>
+                           <h4>Leave a Comment</h4>
+                           <span>Your email address will not be published.</span>
+                           <form action="{{ route('post.comment.submit', $post->id) }}" method="post">
+                               @csrf
+                               <div class="row">
+                                   <div class="col-xl-6 col-md-6">
+                                       <div class="post-input">
+                                           <input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}" required>
+                                       </div>
+                                   </div>
+                                   <div class="col-xl-6 col-md-6">
+                                       <div class="post-input">
+                                           <input type="email" name="email" placeholder="Your Email" value="{{ old('email') }}" required>
+                                       </div>
+                                   </div>
+                                   <div class="col-xl-12">
+                                       <div class="post-input">
+                                           <textarea name="comment" placeholder="Your message..." required>{{ old('comment') }}</textarea>
+                                       </div>
+                                   </div>
+                               </div>
+                               <button type="submit" class="tp-btn">Send Message</button>
+                           </form>
                         </div>
 
                     </div>

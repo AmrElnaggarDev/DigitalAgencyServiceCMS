@@ -20,6 +20,7 @@
                 <a href="{{ route('admin.post_category.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post_category.*') ? 'active' : '' }}">Category</a>
                 <a href="{{ route('admin.post.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.post.*') ? 'active' : '' }}">Post</a>
                 <a href="{{ route('admin.comment.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.comment.*') ? 'active' : '' }}">Comment</a>
+                <a href="{{ route('admin.reply.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.reply.*') ? 'active' : '' }}">Reply</a>
             </div>
         </div>
 

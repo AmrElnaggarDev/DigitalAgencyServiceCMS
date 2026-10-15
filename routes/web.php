@@ -14,12 +14,14 @@ use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
+use App\Http\Controllers\Admin\AdminReplyController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\FrontCommentController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontReplyController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,6 +42,7 @@ Route::get('/blog/tag/{tag}', [FrontController::class, 'tag'])->name('blog.tag')
 Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.search');
 Route::get('/post/{slug}', [FrontController::class, 'post'])->name('post');
 Route::post('/post/{postId}/comment', [FrontCommentController::class, 'store'])->name('post.comment.submit');
+Route::post('/comment/{commentId}/reply', [FrontReplyController::class, 'store'])->name('comment.reply.submit');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
@@ -157,6 +160,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/comment/approve/{id}', [AdminCommentController::class, 'approve'])->name('comment.approve');
         Route::post('/comment/reject/{id}', [AdminCommentController::class, 'reject'])->name('comment.reject');
         Route::post('/comment/destroy/{id}', [AdminCommentController::class, 'destroy'])->name('comment.destroy');
+
+        Route::get('/reply/index', [AdminReplyController::class, 'index'])->name('reply.index');
+        Route::post('/reply/approve/{id}', [AdminReplyController::class, 'approve'])->name('reply.approve');
+        Route::post('/reply/reject/{id}', [AdminReplyController::class, 'reject'])->name('reply.reject');
+        Route::post('/reply/destroy/{id}', [AdminReplyController::class, 'destroy'])->name('reply.destroy');
+        Route::post('/comment/{commentId}/admin-reply', [AdminReplyController::class, 'storeFromAdmin'])->name('comment.admin_reply.submit');
 
     });
 });
