@@ -17,11 +17,13 @@ use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminReplyController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\FrontCommentController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\FrontReplyController;
+use App\Http\Controllers\Front\FrontSubscriberController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,6 +45,8 @@ Route::get('/blog/search', [FrontController::class, 'search'])->name('blog.searc
 Route::get('/post/{slug}', [FrontController::class, 'post'])->name('post');
 Route::post('/post/{postId}/comment', [FrontCommentController::class, 'store'])->name('post.comment.submit');
 Route::post('/comment/{commentId}/reply', [FrontReplyController::class, 'store'])->name('comment.reply.submit');
+Route::post('/subscribe', [FrontSubscriberController::class, 'store'])->name('subscribe.store');
+Route::get('/subscribe/verify/{token}', [FrontSubscriberController::class, 'verify'])->name('subscribe.verify');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'contact_submit'])->name('contact.submit');
 Route::get('/photo-gallery', [FrontController::class, 'photo_gallery'])->name('photo_gallery');
@@ -166,6 +170,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/reply/reject/{id}', [AdminReplyController::class, 'reject'])->name('reply.reject');
         Route::post('/reply/destroy/{id}', [AdminReplyController::class, 'destroy'])->name('reply.destroy');
         Route::post('/comment/{commentId}/admin-reply', [AdminReplyController::class, 'storeFromAdmin'])->name('comment.admin_reply.submit');
+
+        Route::get('/subscriber/index', [AdminSubscriberController::class, 'index'])->name('subscriber.index');
+        Route::get('/subscriber/export-csv', [AdminSubscriberController::class, 'exportCsv'])->name('subscriber.export_csv');
+        Route::post('/subscriber/destroy/{id}', [AdminSubscriberController::class, 'destroy'])->name('subscriber.destroy');
 
     });
 });

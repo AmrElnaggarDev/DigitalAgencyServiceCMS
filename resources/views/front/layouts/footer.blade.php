@@ -15,8 +15,9 @@
                         </div>
                         <div class="footer-subsccribe">
                             <h5>Subscribe</h5>
-                            <form action="#">
-                                <input type="email" name="EMAIL" placeholder="Enter your email" required="" />
+                            <form action="{{ route('subscribe.store') }}" method="post">
+                                @csrf
+                                <input type="email" name="email" placeholder="Enter your email" required="" />
                                 <button type="submit"><i class="fal fa-rocket"></i></button>
                             </form>
                         </div>
