@@ -1,12 +1,13 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+    @php $siteSetting = $global_setting ?? null; @endphp
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Binifox - Laravel Script</title>
+    <title>{{ $siteSetting->site_name ?? 'Binifox - Laravel Script' }}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset("dist-front/img/favicon.png") }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ ($siteSetting && $siteSetting->favicon) ? asset('uploads/' . $siteSetting->favicon) : asset('dist-front/img/favicon.png') }}" />
 
     @include('front.layouts.styles')
 </head>

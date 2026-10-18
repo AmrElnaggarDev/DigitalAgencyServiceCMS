@@ -1,10 +1,12 @@
+@php $siteSetting = $global_setting ?? null; @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>{{ $siteSetting->site_name ?? 'Admin Panel' }}</title>
     <meta name="description" content="Arefin Admin Panel">
+    <link rel="icon" type="image/x-icon" href="{{ ($siteSetting && $siteSetting->favicon) ? asset('uploads/' . $siteSetting->favicon) : asset('dist-front/img/favicon.png') }}" />
     @include('admin.layouts.styles')
 </head>
 <body>

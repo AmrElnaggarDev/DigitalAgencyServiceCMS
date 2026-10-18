@@ -85,6 +85,17 @@
             <span class="sidebar-label">Contact Page</span>
         </a>
 
+        <div class="nav-dropdown">
+            <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-label">Settings</span>
+                <i class="fa-solid fa-chevron-right nav-arrow sidebar-label"></i>
+            </a>
+            <div class="nav-dropdown-menu">
+                <a href="{{ route('admin.settings.index') }}" class="nav-link nav-sub-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">General</a>
+            </div>
+        </div>
+
         <a href="{{ route('admin.photo.index') }}" class="nav-link {{ request()->routeIs('admin.photo.*') ? 'active' : '' }}">
             <i class="fa-solid fa-images"></i>
             <span class="sidebar-label">Photo Gallery</span>

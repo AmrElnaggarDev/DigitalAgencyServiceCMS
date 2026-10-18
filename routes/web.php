@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminReplyController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
@@ -80,6 +81,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
         Route::post('/profile', [AdminProfileController::class, 'profile_update'])->name('profile.update');
+
+        Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
 
         Route::get('/slider/index', [AdminSliderController::class, 'index'])->name('slider.index');
         Route::post('/slider/store', [AdminSliderController::class, 'store'])->name('slider.store');

@@ -1,3 +1,4 @@
+@php $siteSetting = $global_setting ?? null; @endphp
 <header>
     <div id="header-sticky" class="header-area header-transparent header-pad header-border">
         <div class="container-fluid">
@@ -5,7 +6,7 @@
                 <div class="col-xl-2 col-lg-2 col-6">
                     <div class="logo logo-border">
                         <a href="{{ route('home') }}">
-                            <img class="logo-white" src="{{ asset('dist-front/img/logo/logo.png') }}" alt="logo" />
+                            <img class="logo-white" src="{{ ($siteSetting && $siteSetting->logo_header) ? asset('uploads/' . $siteSetting->logo_header) : asset('dist-front/img/logo/logo.png') }}" alt="{{ $siteSetting->site_name ?? 'logo' }}" />
                         </a>
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+@php $siteSetting = $global_setting ?? null; @endphp
 <div class="sidebar__area">
     <div class="sidebar__wrapper">
         <div class="sidebar__close">
@@ -8,7 +9,7 @@
         <div class="sidebar__content">
             <div class="logo mb-40">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('dist-front/img/logo/logo-dark.png') }}" alt="logo" />
+                    <img src="{{ ($siteSetting && $siteSetting->logo_mobile) ? asset('uploads/' . $siteSetting->logo_mobile) : asset('dist-front/img/logo/logo-dark.png') }}" alt="{{ $siteSetting->site_name ?? 'logo' }}" />
                 </a>
             </div>
             <div class="mobile-menu fix"></div>
