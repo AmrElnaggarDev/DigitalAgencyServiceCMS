@@ -21,18 +21,20 @@
 
 <!-- Add your site or application content here -->
 
-<!-- pre loader area start -->
-<div id="loading">
-    <div id="loading-center">
-        <div id="loading-center-absolute">
-            <div class="loading-icon text-center d-sm-flex align-items-center">
-                <img class="loading-logo mr-10" src={{asset("dist-front/img/preloader/preloader-icon.png")}} alt="" />
-                <img src={{asset("dist-front/img/preloader/preloader-logo.png")}} alt="" />
+@if(($siteSetting && $siteSetting->preloader_status !== 'hide') || !$siteSetting)
+    <!-- pre loader area start -->
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="loading-icon text-center d-sm-flex align-items-center">
+                    <img class="loading-logo mr-10" src="{{ ($siteSetting && $siteSetting->preloader_icon) ? asset('uploads/' . $siteSetting->preloader_icon) : asset('dist-front/img/preloader/preloader-icon.png') }}" alt="preloader icon" />
+                    <img src="{{ ($siteSetting && $siteSetting->preloader_logo) ? asset('uploads/' . $siteSetting->preloader_logo) : asset('dist-front/img/preloader/preloader-logo.png') }}" alt="preloader logo" />
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- pre loader area end -->
+    <!-- pre loader area end -->
+@endif
 
 <!-- header  -->
 @include('front.layouts.header')

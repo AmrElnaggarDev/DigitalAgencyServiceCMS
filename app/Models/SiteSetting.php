@@ -18,6 +18,9 @@ class SiteSetting extends Model
         'logo_mobile',
         'favicon',
         'page_banner',
+        'preloader_status',
+        'preloader_icon',
+        'preloader_logo',
         'footer_text',
         'copyright_text',
     ];

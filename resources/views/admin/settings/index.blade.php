@@ -82,6 +82,39 @@
                         <input type="file" name="page_banner" class="form-control-custom">
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">Preloader Status</label>
+                                <select name="preloader_status" class="form-control-custom">
+                                    <option value="show" {{ old('preloader_status', $setting->preloader_status ?? 'show') == 'show' ? 'selected' : '' }}>Show</option>
+                                    <option value="hide" {{ old('preloader_status', $setting->preloader_status ?? 'show') == 'hide' ? 'selected' : '' }}>Hide</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">Preloader Icon</label>
+                                @if(!empty($setting->preloader_icon))
+                                    <div class="mb-2">
+                                        <img src="{{ asset('uploads/' . $setting->preloader_icon) }}" style="max-height:48px; max-width:48px; object-fit:contain;">
+                                    </div>
+                                @endif
+                                <input type="file" name="preloader_icon" class="form-control-custom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="label-custom">Preloader Logo</label>
+                        @if(!empty($setting->preloader_logo))
+                            <div class="mb-2">
+                                <img src="{{ asset('uploads/' . $setting->preloader_logo) }}" style="max-height:80px; max-width:200px; object-fit:contain;">
+                            </div>
+                        @endif
+                        <input type="file" name="preloader_logo" class="form-control-custom">
+                    </div>
+
                     <div class="mb-3">
                         <label class="label-custom">Footer Text</label>
                         <textarea name="footer_text" class="form-control-custom h_100" rows="4" placeholder="Short description shown in the footer.">{{ old('footer_text', $setting->footer_text ?? '') }}</textarea>
