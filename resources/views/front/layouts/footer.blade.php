@@ -1,3 +1,4 @@
+@php $siteSetting = $global_setting ?? null; @endphp
 <footer data-bg-color="#222429" data-background="{{ asset('dist-front/img/bg/04.png') }}">
     <div class="footer-top pt-115 pb-90">
         <div class="container">
@@ -5,12 +6,11 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="footer-widget mb-30">
                         <div class="footer-logo mb-30">
-                            <a href="#"><img src="{{ asset('dist-front/img/logo/logo.png') }}" alt="" /></a>
+                            <a href="{{ route('home') }}"><img src="{{ ($siteSetting && $siteSetting->logo_footer) ? asset('uploads/' . $siteSetting->logo_footer) : asset('dist-front/img/logo/logo.png') }}" alt="{{ $siteSetting->site_name ?? 'logo' }}" /></a>
                         </div>
                         <div class="footer-text mb-20">
                             <p>
-                                Lorem ipsum dolor sit amet consecte tur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua tepo the.
+                                {{ $siteSetting->footer_text ?? 'Lorem ipsum dolor sit amet consecte tur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tepo the.' }}
                             </p>
                         </div>
                         <div class="footer-subsccribe">
@@ -108,7 +108,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="footer-copyright">
-                        <p class="white-color">Copyright ©2026 Company Name. All Rights Reserved</p>
+                        <p class="white-color">{{ $siteSetting->copyright_text ?? 'Copyright ©2026 Company Name. All Rights Reserved' }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
