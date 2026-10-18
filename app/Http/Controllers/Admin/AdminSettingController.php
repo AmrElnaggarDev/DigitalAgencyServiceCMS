@@ -26,11 +26,14 @@ class AdminSettingController extends Controller
             'logo_mobile' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
             'favicon' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,ico,webp', 'max:1024'],
             'page_banner' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
+            'preloader_status' => ['nullable', 'in:show,hide'],
+            'preloader_icon' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
+            'preloader_logo' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
         ]);
 
         $setting = SiteSetting::firstOrNew(['id' => 1]);
 
-        foreach (['logo_header', 'logo_footer', 'logo_mobile', 'favicon', 'page_banner'] as $field) {
+        foreach (['logo_header', 'logo_footer', 'logo_mobile', 'favicon', 'page_banner', 'preloader_icon', 'preloader_logo'] as $field) {
             if ($request->hasFile($field)) {
                 $existing = $setting->{$field};
                 if ($existing && file_exists(public_path('uploads/' . $existing))) {
@@ -44,6 +47,7 @@ class AdminSettingController extends Controller
         }
 
         $setting->site_name = $request->site_name ?: $setting->site_name;
+        $setting->preloader_status = $request->preloader_status ?: ($setting->preloader_status ?? 'show');
         $setting->footer_text = $request->footer_text;
         $setting->copyright_text = $request->copyright_text;
         $setting->save();
