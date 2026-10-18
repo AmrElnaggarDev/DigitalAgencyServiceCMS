@@ -21,6 +21,11 @@ class AdminSettingController extends Controller
             'site_name' => ['nullable', 'string', 'max:255'],
             'footer_text' => ['nullable', 'string'],
             'copyright_text' => ['nullable', 'string', 'max:255'],
+            'facebook_link' => ['nullable', 'url', 'max:255'],
+            'twitter_link' => ['nullable', 'url', 'max:255'],
+            'linkedin_link' => ['nullable', 'url', 'max:255'],
+            'instagram_link' => ['nullable', 'url', 'max:255'],
+            'layout_direction' => ['nullable', 'in:ltr,rtl'],
             'logo_header' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
             'logo_footer' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
             'logo_mobile' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
@@ -50,6 +55,11 @@ class AdminSettingController extends Controller
         $setting->preloader_status = $request->preloader_status ?: ($setting->preloader_status ?? 'show');
         $setting->footer_text = $request->footer_text;
         $setting->copyright_text = $request->copyright_text;
+        $setting->facebook_link = $request->facebook_link;
+        $setting->twitter_link = $request->twitter_link;
+        $setting->linkedin_link = $request->linkedin_link;
+        $setting->instagram_link = $request->instagram_link;
+        $setting->layout_direction = $request->layout_direction ?: ($setting->layout_direction ?? 'ltr');
         $setting->save();
 
         return redirect()->route('admin.settings.index')->with('success', 'Site settings updated successfully.');

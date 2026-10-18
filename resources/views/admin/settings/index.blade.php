@@ -125,6 +125,44 @@
                         <input type="text" name="copyright_text" value="{{ old('copyright_text', $setting->copyright_text ?? '') }}" class="form-control-custom" placeholder="Copyright ©2026 Company Name. All Rights Reserved">
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">Facebook Link</label>
+                                <input type="url" name="facebook_link" value="{{ old('facebook_link', $setting->facebook_link ?? '') }}" class="form-control-custom" placeholder="https://facebook.com/yourpage">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">Twitter Link</label>
+                                <input type="url" name="twitter_link" value="{{ old('twitter_link', $setting->twitter_link ?? '') }}" class="form-control-custom" placeholder="https://twitter.com/yourpage">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">LinkedIn Link</label>
+                                <input type="url" name="linkedin_link" value="{{ old('linkedin_link', $setting->linkedin_link ?? '') }}" class="form-control-custom" placeholder="https://linkedin.com/company/yourpage">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="label-custom">Instagram Link</label>
+                                <input type="url" name="instagram_link" value="{{ old('instagram_link', $setting->instagram_link ?? '') }}" class="form-control-custom" placeholder="https://instagram.com/yourpage">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="label-custom">Layout Direction</label>
+                        <select name="layout_direction" class="form-control-custom">
+                            <option value="ltr" {{ old('layout_direction', $setting->layout_direction ?? 'ltr') == 'ltr' ? 'selected' : '' }}>LTR</option>
+                            <option value="rtl" {{ old('layout_direction', $setting->layout_direction ?? 'ltr') == 'rtl' ? 'selected' : '' }}>RTL</option>
+                        </select>
+                    </div>
+
                     <div>
                         <button type="submit" class="btn-admin-primary">Save Settings</button>
                     </div>

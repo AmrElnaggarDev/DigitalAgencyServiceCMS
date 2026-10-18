@@ -1,7 +1,7 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+@php $siteSetting = $global_setting ?? null; @endphp
+<html class="no-js" lang="zxx" dir="{{ ($siteSetting && $siteSetting->layout_direction) ? $siteSetting->layout_direction : 'ltr' }}">
 <head>
-    @php $siteSetting = $global_setting ?? null; @endphp
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>{{ $siteSetting->site_name ?? 'Binifox - Laravel Script' }}</title>

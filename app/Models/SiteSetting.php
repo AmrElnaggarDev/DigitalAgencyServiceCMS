@@ -23,5 +23,10 @@ class SiteSetting extends Model
         'preloader_logo',
         'footer_text',
         'copyright_text',
+        'facebook_link',
+        'twitter_link',
+        'linkedin_link',
+        'instagram_link',
+        'layout_direction',
     ];
 }

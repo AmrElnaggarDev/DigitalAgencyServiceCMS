@@ -1,6 +1,6 @@
 @php $siteSetting = $global_setting ?? null; @endphp
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="{{ ($siteSetting && $siteSetting->layout_direction) ? $siteSetting->layout_direction : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

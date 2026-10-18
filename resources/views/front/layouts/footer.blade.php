@@ -113,11 +113,18 @@
                 </div>
                 <div class="col-md-6">
                     <div class="footer-social text-start text-md-end">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        @if($siteSetting && $siteSetting->facebook_link)
+                            <a href="{{ $siteSetting->facebook_link }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($siteSetting && $siteSetting->twitter_link)
+                            <a href="{{ $siteSetting->twitter_link }}" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($siteSetting && $siteSetting->linkedin_link)
+                            <a href="{{ $siteSetting->linkedin_link }}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                        @endif
+                        @if($siteSetting && $siteSetting->instagram_link)
+                            <a href="{{ $siteSetting->instagram_link }}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
