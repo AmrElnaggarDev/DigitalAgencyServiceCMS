@@ -5,6 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\Websitemail;
 use App\Models\Admin;
+use App\Models\Comment;
+use App\Models\Faq;
+use App\Models\Package;
+use App\Models\Post;
+use App\Models\Project;
+use App\Models\Reply;
+use App\Models\Service;
+use App\Models\Subscriber;
+use App\Models\TeamMember;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,7 +75,20 @@ class AdminAuthController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $stats = [
+            'posts' => Post::count(),
+            'comments' => Comment::count(),
+            'replies' => Reply::count(),
+            'services' => Service::count(),
+            'projects' => Project::count(),
+            'team_members' => TeamMember::count(),
+            'testimonials' => Testimonial::count(),
+            'faqs' => Faq::count(),
+            'packages' => Package::count(),
+            'subscribers' => Subscriber::count(),
+        ];
+
+        return view('admin.dashboard', compact('stats'));
     }
 
     public function showForgotPassword()
