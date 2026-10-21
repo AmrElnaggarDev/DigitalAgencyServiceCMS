@@ -10,13 +10,13 @@ class AdminAboutItemController extends Controller
 {
     public function index()
     {
-        $about_item = AboutItem::where ('id', 1)->first();
+        $about_item = AboutItem::where('id', 1)->firstOrFail();
         return view('admin.about-item.index', compact('about_item'));
     }
 
     public function update(Request $request)
     {
-        $about_item = AboutItem::where('id',1)->first();
+        $about_item = AboutItem::where('id',1)->firstOrFail();
 
         if($request->hasFile('photo1')) {
             $request->validate([

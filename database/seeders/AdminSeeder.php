@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,12 +13,22 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::updateOrCreate(
-            ['email' => 'admin@gmail.com'],
-            [
-                'name' => 'Amr Elnaggar',
-                'password' => Hash::make('#Amr172005#'),
-            ]
-        );
+        $email = env('ADMIN_EMAIL');
+        $password = env('ADMIN_PASSWORD');
+
+        if (blank($email) || blank($password)) {
+            return;
+        }
+
+        $existingAdmin = Admin::where('email', $email)->first();
+        if ($existingAdmin) {
+            return;
+        }
+
+        Admin::create([
+            'name' => env('ADMIN_NAME', 'Administrator'),
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
     }
 }

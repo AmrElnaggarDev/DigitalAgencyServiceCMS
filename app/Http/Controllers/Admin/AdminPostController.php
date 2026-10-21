@@ -45,7 +45,7 @@ class AdminPostController extends Controller
 
     public function update(Request $request, $id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = Post::where('id', $id)->firstOrFail();
 
         $request->validate([
             'post_category_id' => 'required',
@@ -80,7 +80,7 @@ class AdminPostController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = Post::where('id', $id)->firstOrFail();
         if($post->photo && file_exists(public_path('uploads/'.$post->photo))) {
             unlink(public_path('uploads/'.$post->photo));
         }

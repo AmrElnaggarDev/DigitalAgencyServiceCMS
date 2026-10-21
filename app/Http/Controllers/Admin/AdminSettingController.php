@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SiteSetting;
+use App\Rules\SafeImageUpload;
 use Illuminate\Http\Request;
 
 class AdminSettingController extends Controller
@@ -26,14 +27,14 @@ class AdminSettingController extends Controller
             'linkedin_link' => ['nullable', 'url', 'max:255'],
             'instagram_link' => ['nullable', 'url', 'max:255'],
             'layout_direction' => ['nullable', 'in:ltr,rtl'],
-            'logo_header' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
-            'logo_footer' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
-            'logo_mobile' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
-            'favicon' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,ico,webp', 'max:1024'],
-            'page_banner' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
+            'logo_header' => ['nullable', new SafeImageUpload(2048)],
+            'logo_footer' => ['nullable', new SafeImageUpload(2048)],
+            'logo_mobile' => ['nullable', new SafeImageUpload(2048)],
+            'favicon' => ['nullable', new SafeImageUpload(1024)],
+            'page_banner' => ['nullable', new SafeImageUpload(2048)],
             'preloader_status' => ['nullable', 'in:show,hide'],
-            'preloader_icon' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
-            'preloader_logo' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg,webp', 'max:2048'],
+            'preloader_icon' => ['nullable', new SafeImageUpload(2048)],
+            'preloader_logo' => ['nullable', new SafeImageUpload(2048)],
         ]);
 
         $setting = SiteSetting::firstOrNew(['id' => 1]);
