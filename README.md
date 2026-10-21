@@ -1,59 +1,160 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Digital Agency Service CMS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based content management system for a digital services or agency website. It includes a public front end and an admin dashboard for managing site content, blog posts, services, projects, team members, testimonials, FAQs, subscribers, and global branding settings.
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is built to support a modern agency website with:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- responsive public pages for home, about, services, pricing, projects, team, FAQ, blog, contact, gallery, and legal pages
+- admin authentication and secure password reset flow
+- global site settings for branding and layout
+- media upload support for logos, favicon, banner, and preloader assets
+- dynamic blog and comment management
+- contact and subscription forms
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack
 
-## Learning Laravel
+- PHP 8.2+
+- Laravel 12
+- Blade templating engine
+- SQLite or MySQL database support
+- Laravel routing, validation, migrations, and seeding
+- PHPUnit for automated testing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Implemented Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Admin login and dashboard
+- Dashboard statistics for posts, comments, replies, services, projects, team members, testimonials, FAQs, packages, and subscribers
+- Global settings panel for:
+  - header/footer/mobile logos
+  - favicon
+  - page banner
+  - preloader enable/disable state
+  - preloader icon/logo
+  - footer text and social links
+  - layout direction (LTR/RTL)
+- Homepage sliders and marketing sections
+- About page configuration
+- Services and service FAQs
+- Portfolio projects
+- Team members and social profiles
+- Testimonial management
+- Blog with categories, tags, search, comments, and replies
+- Subscriber management
+- Photo gallery
+- Contact page and form email sending
 
-## Laravel Sponsors
+## Project Structure
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- `app/` — controllers, models, service providers, and application logic
+- `database/migrations/` — database schema migrations
+- `database/seeders/` — database seeders, including the default admin user
+- `resources/views/` — front-end and admin Blade templates
+- `routes/web.php` — route definitions
+- `public/uploads/` — uploaded site and media assets
+- `tests/` — automated tests
 
-### Premium Partners
+## Requirements
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- PHP 8.2 or newer
+- Composer
+- Node.js and npm (only if you plan to rebuild front-end assets)
+- A database such as SQLite or MySQL
 
-## Contributing
+## Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Clone the repository:
 
-## Code of Conduct
+   ```bash
+   git clone <repository-url>
+   cd admin_panel_laravel
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Install PHP dependencies:
 
-## Security Vulnerabilities
+   ```bash
+   composer install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. Create the environment file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Generate the application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+5. Configure your database in `.env`.
+
+   Example for SQLite:
+
+   ```env
+   DB_CONNECTION=sqlite
+   DB_DATABASE=/absolute/path/to/your/database.sqlite
+   ```
+
+   Example for MySQL:
+
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+6. Run the database migrations and seed the default admin account:
+
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
+
+7. If front-end assets need rebuilding locally, install Node dependencies and build them:
+
+   ```bash
+   npm install
+   npm run build
+   ```
+
+## Running the Project
+
+Start the local development server:
+
+```bash
+php artisan serve
+```
+
+Then open:
+
+- Front end: `http://localhost:8000`
+- Admin login: `http://localhost:8000/admin/login`
+
+Default seeded admin login:
+
+- Email: `admin@gmail.com`
+- Password: `#Amr172005#`
+
+## Environment Notes
+
+- Keep your `.env` file private and do not commit it to source control.
+- Uploaded media files are stored in `public/uploads/`.
+- Ensure your hosting environment can write to the uploads directory with the correct file permissions.
+
+## Testing
+
+Run the available tests:
+
+```bash
+php artisan test
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project currently follows the repository's existing licensing setup and is intended for portfolio/demo use unless otherwise specified by the project owner.
