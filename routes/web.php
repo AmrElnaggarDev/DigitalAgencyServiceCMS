@@ -35,7 +35,7 @@ Route::get('/services', [FrontController::class, 'services'])->name('services');
 Route::get('/service/{slug}', [FrontController::class, 'service'])->name('service');
 Route::get('/pricing', [FrontController::class, 'pricing'])->name('pricing');
 Route::get('/projects', [FrontController::class, 'projects'])->name('projects');
-Route::get('/project/{id}', [FrontController::class, 'project'])->name('project');
+Route::get('/project/{slug}', [FrontController::class, 'project'])->name('project');
 Route::get('/team-members', [FrontController::class, 'team_members'])->name('team_members');
 Route::get('/team-member/{slug}', [FrontController::class, 'team_member'])->name('team_member');
 Route::get('/faq', [FrontController::class, 'faq'])->name('faq');

@@ -30,9 +30,9 @@ class FrontController extends Controller
     public function index ()
     {
         $sliders = Slider::orderBy('id','asc')->get();
-        $about_item = AboutItem::where ('id', 1)->first();
-        $cta_item = CtaItem::where('id',1)->first();
-        $counter_item = CounterItem::where ('id', 1)->first();
+        $about_item = AboutItem::first() ?? new AboutItem();
+        $cta_item = CtaItem::first() ?? new CtaItem();
+        $counter_item = CounterItem::first() ?? new CounterItem();
         $services = Service::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
         $team_members = TeamMember::orderBy('id','asc')->get();
         $projects = Project::where ('show_on_home', 'Yes')->orderBy('id','asc')->get();
@@ -43,8 +43,8 @@ class FrontController extends Controller
 
     public function about()
     {
-        $about_item = AboutItem::where ('id', 1)->first();
-        $counter_item = CounterItem::where ('id', 1)->first();
+        $about_item = AboutItem::first() ?? new AboutItem();
+        $counter_item = CounterItem::first() ?? new CounterItem();
         $team_members = TeamMember::orderBy('id','asc')->get();
         $testimonials = Testimonial::orderBy('id','asc')->get();
         $clients = Client::orderBy('id','asc')->get();

@@ -12,7 +12,7 @@
             <div class="card-custom-p">
                 <h2 class="section-title">Edit Counter Items</h2>
 
-                <form action="{{ route('admin.counter_item.update') }}" method="post" class="space-y-4" enctype="multipart/form-data">
+                <form action="{{ route('admin.counter-item.update') }}" method="post" class="space-y-4" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="label-custom">Existing Photo</label>
