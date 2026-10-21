@@ -46,7 +46,7 @@ class AdminProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        $project = Project::where('id', $id)->first();
+        $project = Project::where('id', $id)->firstOrFail();
 
         $request->validate([
             'title' => 'required',
@@ -84,7 +84,7 @@ class AdminProjectController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $project = Project::where('id', $id)->first();
+        $project = Project::where('id', $id)->firstOrFail();
         if($project->photo && file_exists(public_path('uploads/'.$project->photo))) {
             unlink(public_path('uploads/'.$project->photo));
         }

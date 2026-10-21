@@ -156,11 +156,21 @@ php artisan migrate
 
 ### 8. Seed the database
 
-This application includes a database seeder that creates the initial admin account on a fresh database.
+This application includes an admin seeder, but it does not ship a default password in source code. Before running the seeders, set the following environment variables in your local `.env` file:
+
+```env
+ADMIN_NAME="Administrator"
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=change_this_password
+```
+
+Then run:
 
 ```bash
 php artisan db:seed
 ```
+
+If the email already exists, the seeder leaves the account unchanged and does not overwrite it.
 
 ### 9. Build frontend assets
 

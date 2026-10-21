@@ -59,7 +59,7 @@ class FrontController extends Controller
 
     public function service($slug)
     {
-        $service = Service::where ('slug', $slug)->first();
+        $service = Service::where('slug', $slug)->firstOrFail();
         $services = Service::orderBy('title','asc')->get();
         return view('front.service', compact('service', 'services'));
     }
@@ -78,7 +78,7 @@ class FrontController extends Controller
 
     public function project ($slug)
     {
-        $project = Project::where ('slug', $slug)->first();
+        $project = Project::where('slug', $slug)->firstOrFail();
         $next_project = Project::where('id', '>', $project->id)->orderBy('id','asc')->first();
         $previous_project = Project::where('id', '<', $project->id)->orderBy('id','desc')->first();
         return view('front.project', compact('project', 'next_project', 'previous_project'));
@@ -92,7 +92,7 @@ class FrontController extends Controller
 
     public function team_member($slug)
     {
-        $team_member = TeamMember::where('slug', $slug)->first();
+        $team_member = TeamMember::where('slug', $slug)->firstOrFail();
         return view('front.team_member', compact('team_member'));
     }
 
